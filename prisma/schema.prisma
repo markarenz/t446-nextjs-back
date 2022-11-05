@@ -47,10 +47,10 @@ model User {
 }
 
 model UserMeta {
-  id     String  @id @default(cuid()) @map("_id")
-  userId String  @unique
-  email  String? @unique
-  role   String?
+  id     String @id @default(cuid()) @map("_id")
+  userId String @unique
+  email  String @unique
+  role   String
 }
 
 // CMS
