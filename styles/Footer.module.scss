@@ -1,0 +1,10 @@
+@import 'includes';
+
+.footer{
+  background-color: $colors-gray-800;
+  border-top: 2px solid $colors-bsa-red;
+  box-shadow: 0 0px 20px 5px rgba(0,0,0,0.3);
+  color: $colors-gray-100;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
