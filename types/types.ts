@@ -14,3 +14,14 @@ export type UserMeta = {
   email: string;
   role: string;
 };
+
+export type Page = {
+  id: string;
+  title: string;
+  slug: string;
+  status: number;
+  metadesc: string;
+  content: string;
+  dateCreated: Date;
+  dateModified: Date;
+};
