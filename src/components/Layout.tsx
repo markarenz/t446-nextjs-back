@@ -15,8 +15,7 @@ type Props = {
 const Layout: React.FC<Props> = ({ children, pageMeta }) => {
   const { data: session } = useSession();
   const isLoading = session === undefined;
-  // const isLoggedIn = session ? getIsLoggedIn(session) : false;
-  const isLoggedIn = !!session?.user;
+  const isLoggedIn = session ? getIsLoggedIn(session) : false;
   return (
     <div className={styles.layout}>
       {!isLoading && !isLoggedIn && (
@@ -36,7 +35,7 @@ const Layout: React.FC<Props> = ({ children, pageMeta }) => {
           </div>
         </div>
       )}
-      {!isLoading && isLoggedIn && (
+      {!isLoading && (
         <div className={styles.layoutMain}>
           <PageSeo pageMeta={pageMeta} />
           <Header />
