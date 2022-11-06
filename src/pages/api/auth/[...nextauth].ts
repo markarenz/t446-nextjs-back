@@ -1,28 +1,27 @@
 import NextAuth from 'next-auth';
 import GooglePorvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-// import { UserMeta } from '@prisma/client';
-import { UserMeta } from '../../../types/types';
+// import { UserMeta } from '../../../types/types';
 import prisma from '../../../../lib/prismadb';
 import { getIsValidUserRole } from '../../../../helpers';
 
-const getUserMetaByEmail = async (
-  email: string
-): Promise<UserMeta | null | undefined> => {
-  try {
-    const dbUserMeta = await prisma.userMeta.findUnique({
-      where: {
-        email
-      }
-    });
-    if (!dbUserMeta) {
-      return null;
-    }
-    return dbUserMeta;
-  } catch (err) {
-    console.error('ERROR', err);
-  }
-};
+// const getUserMetaByEmail = async (
+//   email: string
+// ): Promise<UserMeta | null | undefined> => {
+//   try {
+//     const dbUserMeta = await prisma.userMeta.findUnique({
+//       where: {
+//         email
+//       }
+//     });
+//     if (!dbUserMeta) {
+//       return null;
+//     }
+//     return dbUserMeta;
+//   } catch (err) {
+//     console.error('ERROR', err);
+//   }
+// };
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -36,19 +35,21 @@ export default NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      const dbUserMeta = await getUserMetaByEmail(`${user?.email}`);
-      return getIsValidUserRole(`${dbUserMeta?.role}`);
+      // const dbUserMeta = await getUserMetaByEmail(`${user?.email}`);
+      // return getIsValidUserRole(`${dbUserMeta?.role}`);
+      return true;
     },
     async session({ session, user }) {
-      const dbUserMeta = await getUserMetaByEmail(`${user?.email}`);
-      if (!!session.user && getIsValidUserRole(`${dbUserMeta?.role}`)) {
+      // const dbUserMeta = await getUserMetaByEmail(`${user?.email}`);
+      if (!!session.user) {
+        // && getIsValidUserRole(`${dbUserMeta?.role}`)) {
         session.user.id = user.id;
-        session.user.role = `${dbUserMeta?.role}`;
-      } else {
-        session.user.id = '';
-        session.user.name = '';
-        session.user.email = '';
-        session.user.role = '';
+        session.user.role = 'admin'; // `${dbUserMeta?.role}`;
+        // } else {
+        //   session.user.id = '';
+        //   session.user.name = '';
+        //   session.user.email = '';
+        //   session.user.role = '';
       }
       return session;
     }
