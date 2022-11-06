@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Layout from '../components/Layout';
-import prisma from '../lib/prismadb';
+import prisma from '../../lib/prismadb';
 import { Page } from '../types/types';
 import { publishStatuses } from '../../constants';
 
