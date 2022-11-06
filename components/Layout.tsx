@@ -23,12 +23,6 @@ const Layout: React.FC<Props> = ({ children, pageMeta }) => {
           <PageSeo pageMeta={pageMeta} />
           <h1>You need to log in</h1>
           {!session ? 'No session' : 'Yes session'}
-          NEXTAUTH_URL: {process.env.NEXTAUTH_URL}
-          <br />
-          MONGODB_URI: {process.env.MONGODB_URI}
-          <br />
-          NEXTAUTH_SECRET: {process.env.NEXTAUTH_SECRET}
-          <br />
           <div>
             <button onClick={() => signIn()}>SIGN IN</button>
           </div>
