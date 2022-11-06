@@ -4,7 +4,7 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 // import { UserMeta } from '@prisma/client';
 import { UserMeta } from '../../../types/types';
 import prisma from '../../../lib/prismadb';
-import { getIsValidUserRole } from '../../../helpers';
+import { getIsValidUserRole } from '../../../../helpers';
 
 const getUserMetaByEmail = async (
   email: string

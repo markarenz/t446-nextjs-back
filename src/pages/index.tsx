@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Layout from '../components/Layout';
 import prisma from '../lib/prismadb';
 import { Page } from '../types/types';
-import { publishStatuses } from '../constants';
+import { publishStatuses } from '../../constants';
 
 type Props = {
   pages: Page[];

@@ -1,5 +1,5 @@
 import { Session } from 'next-auth';
-import { User } from './types/types';
+import { User } from './src/types/types';
 import { roles } from './constants';
 
 // if session is NULL the session is loaded but the user is not logged in...

@@ -1,5 +1,5 @@
 import { useSession, signIn } from 'next-auth/react';
-import { getIsLoggedIn } from '../helpers';
+import { getIsLoggedIn } from '../../helpers';
 import { PageMeta } from '../types/types';
 import Header from './Header';
 import Footer from './Footer';
