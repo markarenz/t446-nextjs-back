@@ -1,7 +1,8 @@
 import NextAuth from 'next-auth';
 import GooglePorvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-// import { UserMeta } from '../../../types/types';
+// import { UserMeta } from '@prisma/client';
+import { UserMeta } from '../../../types/types';
 import prisma from '../../../../lib/prismadb';
 import { getIsValidUserRole } from '../../../../helpers';
 
@@ -24,7 +25,7 @@ import { getIsValidUserRole } from '../../../../helpers';
 // };
 
 export default NextAuth({
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma),
   debug: false,
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -32,26 +33,24 @@ export default NextAuth({
       clientId: `${process.env.GOOGLE_CLIENT_ID}`,
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`
     })
-  ],
-  callbacks: {
-    async signIn({ user }) {
-      // const dbUserMeta = await getUserMetaByEmail(`${user?.email}`);
-      // return getIsValidUserRole(`${dbUserMeta?.role}`);
-      return true;
-    },
-    async session({ session, user }) {
-      // const dbUserMeta = await getUserMetaByEmail(`${user?.email}`);
-      if (!!session.user) {
-        // && getIsValidUserRole(`${dbUserMeta?.role}`)) {
-        session.user.id = user.id;
-        session.user.role = 'admin'; // `${dbUserMeta?.role}`;
-        // } else {
-        //   session.user.id = '';
-        //   session.user.name = '';
-        //   session.user.email = '';
-        //   session.user.role = '';
-      }
-      return session;
-    }
-  }
+  ]
+  // callbacks: {
+  //   async signIn({ user }) {
+  //     const dbUserMeta = await getUserMetaByEmail(`${user?.email}`);
+  //     return getIsValidUserRole(`${dbUserMeta?.role}`);
+  //   },
+  //   async session({ session, user }) {
+  //     const dbUserMeta = await getUserMetaByEmail(`${user?.email}`);
+  //     if (!!session.user && getIsValidUserRole(`${dbUserMeta?.role}`)) {
+  //       session.user.id = user.id;
+  //       session.user.role = `${dbUserMeta?.role}`;
+  //     } else {
+  //       session.user.id = '';
+  //       session.user.name = '';
+  //       session.user.email = '';
+  //       session.user.role = '';
+  //     }
+  //     return session;
+  //   }
+  // }
 });
