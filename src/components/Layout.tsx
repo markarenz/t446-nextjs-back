@@ -24,7 +24,14 @@ const Layout: React.FC<Props> = ({ children, pageMeta }) => {
           <h1>You need to log in</h1>
           {!session ? 'No session' : 'Yes session'}
           <div>
-            <button onClick={() => signIn()}>SIGN IN</button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                signIn();
+              }}
+            >
+              SIGN IN
+            </button>
           </div>
         </div>
       )}
