@@ -10,11 +10,6 @@ export type PageMeta = {
   metedesc: string;
 };
 
-export type UserMeta = {
-  email: string;
-  role: string;
-};
-
 export type Page = {
   id: string;
   title: string;

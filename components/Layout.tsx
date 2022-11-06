@@ -1,11 +1,12 @@
-import { useSession, signIn } from 'next-auth/react';
-import { getIsLoggedIn } from '../helpers';
+// import { getIsLoggedIn } from '../helpers';
 import { PageMeta } from '../types/types';
 import Header from './Header';
 import Footer from './Footer';
 import PageSeo from './PageSeo';
 import Loader from './common/Loader';
 import styles from '../styles/Layout.module.scss';
+import Login from './Login';
+import { useAuthContext } from '../auth/AuthContext';
 
 type Props = {
   children: JSX.Element;
@@ -13,19 +14,14 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = ({ children, pageMeta }) => {
-  const { data: session } = useSession();
-  const isLoading = session === undefined;
-  const isLoggedIn = session ? getIsLoggedIn(session) : false;
+  const isLoading = false;
+  const { isLoggedIn } = useAuthContext();
   return (
     <div className={styles.layout}>
       {!isLoading && !isLoggedIn && (
         <div>
           <PageSeo pageMeta={pageMeta} />
-          <h1>You need to log in</h1>
-          {!session ? 'No session' : 'Yes session'}
-          <div>
-            <button onClick={() => signIn()}>SIGN IN</button>
-          </div>
+          <Login />
         </div>
       )}
       {!isLoading && isLoggedIn && (
