@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth';
-import GooglePorvider from 'next-auth/providers/google';
+import GoogleProvider from 'next-auth/providers/google';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 // import { UserMeta } from '@prisma/client';
 import { UserMeta } from '../../../types/types';
@@ -29,7 +29,7 @@ export default NextAuth({
   debug: false,
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
-    GooglePorvider({
+    GoogleProvider({
       clientId: `${process.env.GOOGLE_CLIENT_ID}`,
       clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`
     })
