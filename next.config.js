@@ -2,10 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  // webpack: (config) => {
+  //   config.resolve.fallback = { fs: false };
+  //   return config;
+  // },
   env: {
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    USER_ADMIN: process.env.USER_ADMIN,
+    USER_ADMIN_PW: process.env.USER_ADMIN_PW,
+    USER_HISTORIAN: process.env.USER_HISTORIAN,
+    USER_HISTORIAN_PW: process.env.USER_HISTORIAN_PW,
     MONGODB_URI: process.env.MONGODB_URI,
-    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET
+    ENC_SALT: process.env.ENC_SALT
   }
 };
 
