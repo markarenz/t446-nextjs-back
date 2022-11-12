@@ -1,0 +1,28 @@
+@import 'includes';
+
+.arcInner {
+  stroke: var(--colors-bsa-blue);
+  transform-origin: center;
+  &.animating {
+    animation: 1.0s spin linear infinite;
+  }
+}
+.arcOuter {
+  stroke: var(--colors-bsa-red);
+  transform-origin: center;
+  &.animating {
+    animation: 2.0s spin linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

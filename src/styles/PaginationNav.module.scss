@@ -1,0 +1,17 @@
+.root {
+  text-align:center;
+  margin-bottom: 2rem; 
+  .navBtnWrapper{
+    display:inline-block;
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .pageNumsWrapper{
+    margin: 0 0.5rem;
+    display:inline-block;
+    padding: 0.5rem;
+    background-color: var(--colors-gray-800);
+    border-radius: 0.25rem;
+  }
+}

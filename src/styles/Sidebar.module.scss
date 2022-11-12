@@ -1,0 +1,51 @@
+@import 'includes';
+
+.sidebar{
+  overflow-y: auto;
+  background-color: var(--colors-gray-900);
+  max-width:0;
+  width:100%;
+  min-height:100vh;
+  transition: 0.3s all ease-out;
+  overflow-x:hidden;
+  z-index:2;
+  &.open {
+    max-width:16.5rem;
+  }
+  .inner{
+    width: 16.5rem;
+    max-width:16.5rem;
+  }
+  @include for-phone-only {
+    position:fixed;
+    margin-top: 4rem;
+    width:100vw;
+    .inner {
+      width:100vw;
+      max-width:100vw;
+    }
+    &.open {
+      max-width:100vw;
+    }
+  }
+  .navArea {
+    padding: 0 1rem 7rem 1rem;
+  }
+}
+
+.navSection {
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--colors-gray-300);
+  &:last-of-type {
+    border-bottom:none;
+  }
+  .navLinks {
+    transition: 0.2s all ease-out;
+    max-height: 0;
+    overflow-y:hidden;
+    &.active{
+      max-height: 200px;
+    }
+  }
+
+}

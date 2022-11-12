@@ -1,0 +1,28 @@
+.iconButton {
+  background-color: var(--colors-gray-500);
+  &.primary {
+    background-color: var(--colors-primary);
+  }
+  &.secondary {
+    background-color: var(--colors-secondary);
+  }
+  width:2rem;
+  height:2rem;
+  border-radius: 100%;
+  cursor:pointer;
+  border:none;
+  .inner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg path {
+      width:2rem;
+      height:2rem;
+      fill: var(--colors-gray-lightest);
+    }
+  }
+  transition: 0.2s transform ease-in-out;
+  &:hover {
+    transform: scale(1.2);
+  }
+}

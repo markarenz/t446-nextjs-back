@@ -1,0 +1,22 @@
+@import 'includes';
+
+.header {
+  background-color: var(--colors-gray-800);
+  border-bottom:2px solid var(--colors-primary);
+  box-shadow: 0 0 20px 5px rgba(0,0,0,0.5);
+  padding:1rem;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  @include for-phone-only {  
+    position:fixed;
+    z-index:3;
+    width:100%;
+  }
+}
+
+.userRole{
+  text-transform: uppercase;
+  margin-right:1rem;
+}

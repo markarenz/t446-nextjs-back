@@ -9,11 +9,24 @@ datasource db {
 }
 
 // CMS
+
+model Alert {
+  id           String   @id @default(cuid()) @map("_id")
+  title        String
+  status       String
+  content      String
+  alwaysOn     Boolean
+  dateStart    DateTime
+  dateEnd      DateTime
+  dateCreated  DateTime
+  dateModified DateTime
+}
+
 model Page {
   id           String   @id @default(cuid()) @map("_id")
   title        String
   slug         String
-  status       Int
+  status       String
   metadesc     String
   content      String
   dateCreated  DateTime

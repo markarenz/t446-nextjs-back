@@ -1,0 +1,31 @@
+.navLinkDeco{
+  width:1rem;
+  height:1rem;
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:0;
+  transition: 0.2s all ease-in-out;
+}
+
+.navLink{
+  position:relative;
+  font-size:1rem;
+  padding-bottom:0.5rem;
+  font-size: 1.2rem;
+  a {
+    display:block;
+    transition: 0.2s all ease-in-out;
+  }
+  transition: 0.2s all ease-in-out;
+  &:hover{
+    a {
+      color: white;
+      transform: translateX(1.5rem);
+    }
+    .navLinkDeco{
+      opacity:1.0;
+      left:0;
+    }
+  }
+}

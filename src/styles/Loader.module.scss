@@ -1,0 +1,50 @@
+.loader {
+  background-color: rgba(0,0,0,0.5);
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  opacity:0;
+  pointer-events: none;
+  transition: 0.3s opacity;
+  &.active{
+    opacity:1.0;
+    pointer-events: all;
+  }
+}
+.loaderImg{
+  width:12rem;
+  height:12rem;
+  position:relative;
+}
+.logo {
+  position:absolute;
+  left:2rem;
+  top:2rem;
+  width:8rem;
+  height:8rem;
+  &.animating {
+    animation: 2.0s logoPulse ease-in-out infinite;
+  }
+}
+.spinner {
+  width:12rem;
+  height:12rem;
+}
+
+@keyframes logoPulse {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.0);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+
+}

@@ -1,0 +1,58 @@
+.buttonNavToggle {
+  background:none;
+  width:2rem;
+  height:2rem;
+  border:none;
+  cursor: pointer;
+  position: relative;
+  svg {
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+  }
+  .bar{
+    transition: 0.2s all ease-in-out;
+    fill: var(--colors-gray-100);
+    &.bar1{
+      width: 100%;
+      height: 15%;
+      x: 0%;
+      y: 7%;
+      &.active{
+        x: 21.176153%;
+        y: -7.0340157%;
+        transform: rotate(45deg);
+      }
+    }
+    &.bar2{
+      width: 100%;
+      height: 15%;
+      x: 0%;
+      y: 42%;
+      &.active{
+        width: 0%;
+        x: 50%;
+        y: 42%;
+      }
+    }
+    &.bar3{
+      width: 100%;
+      height: 15%;
+      x: 0%;
+      y: 78%;
+      &.active{
+        x: -50.465729%;
+        y: 63.676407%;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  &:hover{
+    .bar {
+      fill: var(--colors-gray-lightest);
+    }
+  }
+
+}
