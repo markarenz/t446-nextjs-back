@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import styles from '../styles/Sidebar.module.scss';
 import { useAppContext } from '../context/AppContext';
@@ -25,10 +26,12 @@ const Sidebar = () => {
     <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
       <div className={styles.inner}>
         <Link href="/">
-          <img
+          <Image
             src="/img/t446-menu-photo.jpg"
             alt="Troop 446"
             className="responsive cursor-pointer"
+            width={640}
+            height={233}
           />
         </Link>
         <nav className={styles.navArea}>

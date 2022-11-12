@@ -14,7 +14,7 @@ const Login = () => {
     password: ''
   };
   const [loginState, setLoginState] = useState(initialState);
-  const { authLogin, setLoading } = useAppContext();
+  const { setLoading } = useAppContext();
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginState((prevLoginState) => ({
       ...prevLoginState,
@@ -26,7 +26,7 @@ const Login = () => {
   const handleLogin = () => {
     setLoading(true);
     setTimeout(() => {
-      authLogin(loginState.username, loginState.password);
+      // authLogin(loginState.username, loginState.password);
       setLoading(false);
     }, 500);
   };
