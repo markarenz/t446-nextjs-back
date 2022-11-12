@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 import styles from '../styles/Sidebar.module.scss';
 import { useAppContext } from '../context/AppContext';
 import { navItems } from '../constants';
+import { getRoleFromSession } from '../helpers';
 import NavSectionTitle from './NavSectionTitle';
 import NavLink from './NavLink';
 
 const Sidebar = () => {
   const [menuState, setMenuState] = useState<boolean[]>([]);
-  const { isSidebarOpen, userRole } = useAppContext();
+  const { isSidebarOpen } = useAppContext();
+  const { data: session } = useSession();
+  const userRole = getRoleFromSession(session);
   const handleSectionToggle = (idx: number): void => {
     setMenuState((prevMenuState) => {
       const newMenuState = [...prevMenuState];
