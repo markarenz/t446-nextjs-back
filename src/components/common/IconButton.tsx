@@ -1,4 +1,4 @@
-import styles from '../../styles/IconButton.module.scss';
+import styles from '../../styles/modules/IconButton.module.scss';
 
 type Props = {
   children: JSX.Element;

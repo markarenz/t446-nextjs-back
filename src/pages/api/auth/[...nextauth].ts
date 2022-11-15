@@ -23,11 +23,6 @@ const checkSimpleAuth = (username: string, password: string): User | null => {
   return user;
 };
 const getRoleByEmail = (email: string): string => {
-  console.log(
-    'getRoleByEmail',
-    email,
-    `${process.env.USER_ADMIN?.split('|')[0]}@indytroop446.org`
-  );
   if (email === `${process.env.USER_ADMIN?.split('|')[0]}@indytroop446.org`) {
     return 'admin';
   }
@@ -39,7 +34,7 @@ const getRoleByEmail = (email: string): string => {
   return '';
 };
 
-export default NextAuth({
+export const authOptions = {
   debug: false,
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
@@ -55,17 +50,18 @@ export default NextAuth({
           `${credentials?.username}`,
           `${credentials?.password}`
         );
-        console.log('authorize user', user);
         return user;
       }
     })
   ],
   callbacks: {
-    async session({ session }) {
+    // @ts-ignore
+    async session({ session }: { session: Session }) {
       const role = getRoleByEmail(session?.user?.email);
       session.user.role = role;
-      console.log('??? ROLE?', session);
       return session;
     }
   }
-});
+};
+
+export default NextAuth(authOptions);

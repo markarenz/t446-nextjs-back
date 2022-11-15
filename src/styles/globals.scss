@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Work+Sans:wght@400;700&display=swap');
 @import 'includes';
+@import "react-datepicker/dist/react-datepicker.css";
+
 :root {
   // FONTS
   --font-headline: 'Roboto Slab', serif;
   --font-base: 'Work Sans', sans-serif;
 
   // COLORS
-  --colors-modal-bg: rgba(0,0,0,0.5);
+  --colors-modal-bg: rgba(0,0,0,0.75);
   --colors-bsa-red: #ed1c24;
   --colors-bsa-blue: #2e3192;
   --colors-primary: #ed1c24;
@@ -161,6 +163,29 @@ img.framed {
     transform:scale(1.2);
   }
 }
+.modal{
+  z-index:100;
+}
+
+.error {
+  font-weight: bold;
+  color: var(--colors-bsa-red);
+}
+
+.react-datepicker__input-container input {
+  font-size: 1rem;
+  width:100%;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--colors-gray-500);
+  background-color: var(--colors-gray-700);
+  transition: 0.3s border-color ease-out;
+  &:focus {
+    border-color: var(--colors-primary);
+  }
+}
+
 @import 'global-includes/card.scss';
 @import 'global-includes/table.scss';
 @import 'global-includes/spacing.scss';
+@import 'global-includes/grid.scss';

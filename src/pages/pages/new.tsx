@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Test: NextPage = () => {
   const pageMeta = {
     title: 'Home',
-    metedesc: 'This is the dashboard for the T446 Content app'
+    metedesc: 'New page...'
   };
   return (
     <Layout pageMeta={pageMeta}>

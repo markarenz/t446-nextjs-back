@@ -5,85 +5,41 @@ export const navItems = [
     title: 'Alerts',
     id: 0,
     roles: ['admin', 'historian'],
-    links: [
-      {
-        title: 'View Alerts',
-        path: '/alerts/1'
-      },
-      {
-        title: 'New Alert',
-        path: '/alerts/new'
-      },
-      {
-        title: 'Publish Alerts',
-        path: '/alerts/publish'
-      }
-    ]
+    path: '/alerts/1'
   },
   {
     title: 'Pages',
     id: 1,
     roles: ['admin'],
-    links: [
-      {
-        title: 'View Pages',
-        path: '/pages/1'
-      },
-      {
-        title: 'New Page',
-        path: '/pages/new'
-      },
-      {
-        title: 'Publish Pages',
-        path: '/alerts/publish'
-      }
-    ]
+    path: '/pages/1'
   },
   {
     title: 'Galleries',
     id: 2,
     roles: ['admin', 'historian'],
-    links: [
-      {
-        title: 'View Galleries',
-        path: '/galleries/1'
-      },
-      {
-        title: 'New Gallery',
-        path: '/galleries/new'
-      },
-      {
-        title: 'Publish Galleries',
-        path: '/galleries/publish'
-      }
-    ]
+    path: '/galleries/1'
   },
   {
     title: 'Assets',
     id: 3,
     roles: ['admin', 'historian'],
-    links: [
-      {
-        title: 'View Assets',
-        path: '/assets'
-      }
-    ]
+    path: '/assets'
   },
   {
     title: 'Tools',
     id: 4,
     roles: ['admin'],
-    links: [
-      {
-        title: 'Tool 1',
-        path: '/tool1'
-      },
-      {
-        title: 'Tool 2',
-        path: '/tool2'
-      }
-    ]
+    path: '/tools'
   }
 ];
 
-export const publishStatuses = ['draft', 'published'];
+export const statusOptions = [
+  {
+    label: 'Inactive',
+    value: 'inactive'
+  },
+  {
+    label: 'Active',
+    value: 'active'
+  }
+];

@@ -8,3 +8,6 @@ export { default as IconGalleries } from './IconGalleries';
 export { default as IconPages } from './IconPages';
 export { default as IconTools } from './IconTools';
 export { default as IconView } from './IconView';
+export { default as IconNewItem } from './IconNewItem';
+export { default as IconPublish } from './IconPublish';
+export { default as IconSearch } from './IconSearch';

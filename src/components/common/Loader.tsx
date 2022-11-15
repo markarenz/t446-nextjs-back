@@ -1,4 +1,4 @@
-import styles from '../../styles/Loader.module.scss';
+import styles from '../../styles/modules/Loader.module.scss';
 import LogoBsa from '../img/LogoBsa';
 import LoaderArcs from '../img/LoaderArcs';
 

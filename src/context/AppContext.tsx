@@ -27,7 +27,7 @@ export const AppContextProvider: React.FC<Props> = ({ children }) => {
   const [userRole, setUserRole] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const setLoading = (v: boolean): void => {
     setIsLoading(v);
   };
@@ -44,7 +44,7 @@ export const AppContextProvider: React.FC<Props> = ({ children }) => {
       isSidebarOpen,
       setSidebarOpen
     };
-  }, [userRole, isLoggedIn, isLoading, setLoading]);
+  }, [userRole, isLoggedIn, isLoading, isSidebarOpen]);
 
   return (
     <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>

@@ -17,7 +17,7 @@
   }
   &.outlined {
     background-color: transparent;
-    border: 2px solid var(--colors-gray-300);
+    outline: 2px solid var(--colors-gray-300);
   }
   border: none;
   box-shadow: 0 -2px 0 inset rgba(255,255,255,0.3);

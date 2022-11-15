@@ -11,7 +11,7 @@ datasource db {
 // CMS
 
 model Alert {
-  id           String   @id @default(cuid()) @map("_id")
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   title        String
   status       String
   content      String
@@ -23,12 +23,24 @@ model Alert {
 }
 
 model Page {
-  id           String   @id @default(cuid()) @map("_id")
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   title        String
   slug         String
   status       String
   metadesc     String
   content      String
+  dateCreated  DateTime
+  dateModified DateTime
+}
+
+model Gallery {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  slug         String
+  status       String
+  content      String
+  images       String
+  pubDate      DateTime
   dateCreated  DateTime
   dateModified DateTime
 }

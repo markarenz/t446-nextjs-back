@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import IconArrow from './img/icons/IconArrow';
-import styles from '../styles/NavLink.module.scss';
+import styles from '../styles/modules/NavLink.module.scss';
 
 type NavLinkType = {
   path: string;

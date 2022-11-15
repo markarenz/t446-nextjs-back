@@ -1,5 +1,5 @@
-import styles from '../styles/NavSectionTitle.module.scss';
-import IconChevron from './img/icons/IconChevron';
+import styles from '../styles/modules/NavSectionTitle.module.scss';
+import Link from 'next/link';
 import {
   IconAlerts,
   IconPages,
@@ -9,43 +9,28 @@ import {
 } from './img/icons';
 
 type Props = {
-  handleSectionToggle: Function;
-  menuState: boolean[];
   navItem: {
     id: number;
     title: string;
+    path: string;
   };
 };
 
-const NavSectionTitle: React.FC<Props> = ({
-  handleSectionToggle,
-  menuState,
-  navItem
-}) => {
+const NavSectionTitle: React.FC<Props> = ({ navItem }) => {
   return (
-    <div
-      className={styles.navSectionTitle}
-      onClick={() => handleSectionToggle(navItem.id)}
-    >
-      <div className={styles.titleWrap}>
-        <div className={styles.iconWrap}>
-          {navItem.title === 'Alerts' && <IconAlerts />}
-          {navItem.title === 'Pages' && <IconPages />}
-          {navItem.title === 'Galleries' && <IconGalleries />}
-          {navItem.title === 'Assets' && <IconAssets />}
-          {navItem.title === 'Tools' && <IconTools />}
+    <div className={styles.navSectionTitle}>
+      <Link href={navItem.path}>
+        <div className={styles.titleWrap}>
+          <div className={styles.iconWrap}>
+            {navItem.title === 'Alerts' && <IconAlerts />}
+            {navItem.title === 'Pages' && <IconPages />}
+            {navItem.title === 'Galleries' && <IconGalleries />}
+            {navItem.title === 'Assets' && <IconAssets />}
+            {navItem.title === 'Tools' && <IconTools />}
+          </div>
+          {navItem.title}
         </div>
-        {navItem.title}
-      </div>
-      <div>
-        <div
-          className={`${styles.chevron} ${
-            menuState[navItem.id] ? styles.active : ''
-          }`}
-        >
-          <IconChevron />
-        </div>
-      </div>
+      </Link>
     </div>
   );
 };

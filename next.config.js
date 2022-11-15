@@ -12,6 +12,7 @@ const nextConfig = {
     ];
   },
   env: {
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     USER_ADMIN: process.env.USER_ADMIN,
     USER_ADMIN_PW: process.env.USER_ADMIN_PW,
     USER_HISTORIAN: process.env.USER_HISTORIAN,
