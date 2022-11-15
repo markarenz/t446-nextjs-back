@@ -3,10 +3,12 @@ import Header from './Header';
 import Footer from './Footer';
 import PageSeo from './PageSeo';
 import Loader from './common/Loader';
+import Button from './common/Button';
 import Sidebar from './Sidebar';
-import styles from '../styles/Layout.module.scss';
-import Login from './Login';
+import { checkSession } from '../helpers';
+import styles from '../styles/modules/Layout.module.scss';
 import { useAppContext } from '../context/AppContext';
+import { useSession, signIn } from 'next-auth/react';
 
 type Props = {
   children: JSX.Element;
@@ -14,13 +16,24 @@ type Props = {
 };
 
 const Layout: React.FC<Props> = ({ children, pageMeta }) => {
-  const { isLoggedIn, isLoading } = useAppContext();
+  const { data: session } = useSession();
+  const isLoggedIn = checkSession(session);
+  const isLoadingSession = session === undefined;
+  const { isLoading } = useAppContext();
   return (
     <div className={styles.layout}>
       <PageSeo pageMeta={pageMeta} />
       {!isLoading && !isLoggedIn && (
-        <div>
-          <Login />
+        <div className={styles.loggedOut}>
+          <h2>You need to log in.</h2>
+          <Button
+            disabled={false}
+            onClick={() => signIn()}
+            color="primary"
+            variant="contained"
+          >
+            <span>Sign In</span>
+          </Button>
         </div>
       )}
       {!isLoading && isLoggedIn && (
@@ -33,7 +46,7 @@ const Layout: React.FC<Props> = ({ children, pageMeta }) => {
           </div>
         </div>
       )}
-      <Loader show={isLoading} />
+      <Loader show={isLoading || isLoadingSession} />
     </div>
   );
 };

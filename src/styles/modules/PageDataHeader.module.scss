@@ -1,0 +1,28 @@
+@import '../includes';
+
+.pageDataHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+  margin-bottom:0.5rem;
+  h2{
+    line-height: 1;
+    margin:0;
+  }
+  .controlWrap{
+    display:flex;
+    align-items: center;
+  }
+  @include for-phone-only {
+    display:block;
+    h2 {
+      margin-bottom:0.5rem;
+    }
+    .controlWrap{
+      justify-content: space-between;
+    }
+  }
+}

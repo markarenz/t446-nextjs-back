@@ -1,0 +1,15 @@
+.root {
+  width:100%;
+  min-height:100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .inner {
+    text-align:center;
+  }
+  .big404{
+    font-size: 16rem;
+    font-weight:bold;
+    font-family: var(--font-headline);
+  }
+}

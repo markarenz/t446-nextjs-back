@@ -1,0 +1,18 @@
+.root {
+  position:relative;
+  textarea {
+    height:100%;
+  }
+  .modeToggleWrapper{
+    position:absolute;
+    right:-0.25rem;
+    top:-0.25rem;
+    width:2rem;
+    height:2rem;
+  }
+  .previewWrap{
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--colors-gray-500);
+    height:100%;
+  }
+}

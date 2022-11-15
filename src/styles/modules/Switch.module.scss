@@ -1,0 +1,37 @@
+.switchRoot{
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  .optionLabel{
+    font-size:1rem;
+  }
+  .switchBtn {
+    position:relative;
+    margin:0 0.5rem;
+    border:none;
+    outline:none;
+    height:1.5rem;
+    width:3rem;
+    border-radius: 2rem;
+    background-color: var(--colors-gray-500);
+    border: 2px solid var(--colors-gray-300);
+    cursor:pointer;
+    svg {
+      position:absolute;
+      left:0;
+      top:-2px;
+      transition: 0.1s left ease-in-out;
+      &.optionB{
+        left:1.5rem;
+      }
+      height:1.5rem;
+      width:1.5rem;
+      .circleInner {
+        fill: var(--colors-primary);
+      }
+      .circleOuter {
+        fill: var(--colors-primary-focus);
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/LoaderArcs.module.scss';
+import styles from '../../styles/modules/LoaderArcs.module.scss';
 
 type Props = {
   show: boolean;

@@ -1,13 +1,16 @@
-import styles from '../styles/Header.module.scss';
+import styles from '../styles/modules/Header.module.scss';
+import { useSession, signOut } from 'next-auth/react';
 import { useAppContext } from '../context/AppContext';
 import Button from './common/Button';
+import { getRoleFromSession } from '../helpers';
 import ButtonNavToggle from './ButtonNavToggle';
 
 const Header = () => {
-  const { isSidebarOpen, setSidebarOpen, isLoggedIn, authLogout, userRole } =
-    useAppContext();
+  const { data: session } = useSession();
+  const userRole = getRoleFromSession(session);
+  const { isSidebarOpen, setSidebarOpen } = useAppContext();
   const handleLogout = () => {
-    authLogout();
+    signOut();
   };
   return (
     <header className={styles.header}>

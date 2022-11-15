@@ -1,4 +1,4 @@
-@import 'includes';
+@import '../includes';
 
 .sidebar{
   overflow-y: auto;
@@ -35,17 +35,4 @@
 
 .navSection {
   padding: 1rem 0;
-  border-bottom: 2px solid var(--colors-gray-300);
-  &:last-of-type {
-    border-bottom:none;
-  }
-  .navLinks {
-    transition: 0.2s all ease-out;
-    max-height: 0;
-    overflow-y:hidden;
-    &.active{
-      max-height: 200px;
-    }
-  }
-
 }

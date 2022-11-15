@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '../../styles/PaginationNav.module.scss';
+import styles from '../../styles/modules/PaginationNav.module.scss';
 
 type Props = {
   pageNum: number;
@@ -17,7 +17,7 @@ const PaginationNav: React.FC<Props> = ({
   path
 }) => {
   const firstItem = (pageNum - 1) * itemsPerPage + 1;
-  const lastItem = firstItem + itemsLoaded;
+  const lastItem = firstItem + itemsLoaded - 1;
   const moreItems = lastItem + 1 <= numItems;
   return (
     <div className={styles.root}>

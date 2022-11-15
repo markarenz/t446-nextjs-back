@@ -1,5 +1,5 @@
 import { useAppContext } from '../context/AppContext';
-import styles from '../styles/ButtonNavToggle.module.scss';
+import styles from '../styles/modules/ButtonNavToggle.module.scss';
 
 const ButtonNavToggle = () => {
   const { isSidebarOpen, setSidebarOpen } = useAppContext();

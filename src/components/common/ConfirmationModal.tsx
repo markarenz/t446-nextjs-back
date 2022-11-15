@@ -1,4 +1,4 @@
-import styles from '../../styles/ConfirmationModal.module.scss';
+import styles from '../../styles/modules/ConfirmationModal.module.scss';
 import Button from './Button';
 
 type Props = {

@@ -1,11 +1,11 @@
-import styles from '../../styles/Button.module.scss';
+import styles from '../../styles/modules/Button.module.scss';
 
 type Props = {
   children: JSX.Element;
   variant?: string;
   color?: string;
   size?: string;
-  onClick: Function;
+  onClick?: Function;
   disabled: boolean;
   tabIndex?: number;
 };
@@ -28,7 +28,7 @@ const Button: React.FC<Props> = ({
   }
   return (
     <button
-      onClick={(e) => onClick(e)}
+      onClick={!!onClick ? (e) => onClick(e) : () => {}}
       type="button"
       tabIndex={tabIndex}
       disabled={disabled}
