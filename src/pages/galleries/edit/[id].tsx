@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
-import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
 import Link from 'next/link';
 
 const Test: NextPage = () => {
   const pageMeta = {
     title: 'Home',
-    metedesc: 'New page...'
+    metedesc: 'This is the dashboard for the T446 Content app'
   };
   return (
     <Layout pageMeta={pageMeta}>

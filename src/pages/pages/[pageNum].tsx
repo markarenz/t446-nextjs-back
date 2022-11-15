@@ -60,6 +60,9 @@ const Pages: NextPage<Props> = ({
   const handleCreateNew = async () => {
     console.log('NEW PAGE');
   };
+  const handlePublish = async () => {
+    console.log('PUBLISH');
+  };
   return (
     <Layout pageMeta={pageMeta}>
       <div className={styles.pageRoot}>
@@ -69,6 +72,7 @@ const Pages: NextPage<Props> = ({
             setSearchFilter={setSearchFilter}
             defaultSearchText={defaultSearchText}
             handleCreateNew={handleCreateNew}
+            handlePublish={handlePublish}
           />
           <PageDataTable
             items={pages}

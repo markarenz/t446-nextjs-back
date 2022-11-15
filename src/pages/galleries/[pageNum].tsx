@@ -49,6 +49,9 @@ const Alerts: NextPage<Props> = ({
   const handleCreateNew = async () => {
     console.log('NEW GALLERY');
   };
+  const handlePublish = async () => {
+    console.log('PUBLISH');
+  };
   const tableActions = ['edit', 'view', 'delete'];
   const tableFields = [
     {
@@ -69,6 +72,7 @@ const Alerts: NextPage<Props> = ({
             setSearchFilter={setSearchFilter}
             defaultSearchText={defaultSearchText}
             handleCreateNew={handleCreateNew}
+            handlePublish={handlePublish}
           />
           <PageDataTable
             items={galleries}
