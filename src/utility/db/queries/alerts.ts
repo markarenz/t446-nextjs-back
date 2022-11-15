@@ -135,6 +135,7 @@ export const publishAlerts = async () => {
       Body: data,
       ACL: 'public-read'
     };
+    console.log('UPLOAD PARAMS', params);
     s3.upload(params, function (err: string, data: Alert[]) {
       if (err) {
         console.log(err);
