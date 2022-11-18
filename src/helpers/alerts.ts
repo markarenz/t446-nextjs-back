@@ -1,4 +1,3 @@
-import { Alert } from '@prisma/client';
 import Router from 'next/router';
 
 export const callCreateNew = async (setLoading: Function) => {

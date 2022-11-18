@@ -1,4 +1,3 @@
-import prisma from '../../../../lib/prismadb';
 import { unstable_getServerSession } from 'next-auth/next';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authOptions } from '../auth/[...nextauth]';
