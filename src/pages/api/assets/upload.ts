@@ -6,7 +6,6 @@ import AWS from 'aws-sdk';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authOptions } from '../auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
-import { Files } from 'aws-sdk/clients/iotsitewise';
 
 const readFile = (req: NextApiRequest) => {
   const form = formidable();
@@ -87,10 +86,8 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
           `${process.env.AWS__BASE_DIR}files-dev/${filename}`
         );
       });
-      res.send('OK');
     });
-
-  return res.status(200);
+  return res.status(200).json({ filename });
 }
 
 export const config = {
