@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from '../../styles/modules/PageDataHeader.module.scss';
 import IconButton from '../../components/common/IconButton';
 import Input from '../../components/common/Input';
+import { sanitizeString } from '../../helpers';
 import {
   IconNewItem,
   IconPublish,
@@ -25,7 +26,7 @@ const PageDataHeader: React.FC<Props> = ({
 }) => {
   const [searchText, setSearchText] = useState(defaultSearchText);
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
+    setSearchText(sanitizeString(e.target.value));
   };
   const handleSearchClick = () => {
     setSearchFilter(searchText);

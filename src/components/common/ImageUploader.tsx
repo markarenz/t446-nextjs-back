@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '../common/Button';
 import IconButton from './IconButton';
+import { useAppContext } from '../../context/AppContext';
 import { IconClose } from '../img/icons';
 import styles from '../../styles/modules/ImageUploader.module.scss';
 
@@ -12,8 +13,12 @@ type StagedImage = {
   uploaded: boolean;
 };
 
-const ImageUploader = () => {
+type Props = {
+  handleTriggerRefresh: Function;
+};
+const ImageUploader: React.FC<Props> = ({ handleTriggerRefresh }) => {
   const [images, setImages] = useState<StagedImage[]>([]);
+  const { setLoading } = useAppContext();
   const handleAddImages = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target?.files && event.target?.files[0]) {
       const newImages: StagedImage[] = [];
@@ -50,11 +55,17 @@ const ImageUploader = () => {
         body
       });
       const data = await response.json();
-      setImages((prev) =>
-        prev.map((i) =>
+      setImages((prev) => {
+        const allUploaded = prev.every(
+          (i) => i.uploaded || i.filename === data.filename
+        );
+        if (allUploaded) {
+          handleTriggerRefresh();
+        }
+        return prev.map((i) =>
           i.filename === data.filename ? { ...i, uploaded: true } : i
-        )
-      );
+        );
+      });
     });
   };
   const isFormValid = images.some((i) => !i.uploading);

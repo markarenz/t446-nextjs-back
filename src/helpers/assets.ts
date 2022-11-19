@@ -1,30 +1,36 @@
-export const callAssetUpload = async (setLoading: Function, images: File[]) => {
-  // issue fetch with array of images
+export const callGetAssetlist = async (setLoading: Function) => {
   setLoading(true);
   try {
-    if (images.length > 0) {
-      images.forEach((file) => {
-        const reader = new FileReader();
-        // reader.onabort = () => console.log('file reading was aborted');
-        // reader.onerror = () => console.log('file reading has failed');
-        reader.onload = () => {
-          const binaryStr = reader.result;
-          console.log(binaryStr);
-          const response = fetch('/api/assets/upload', {
-            body: JSON.stringify({
-              image: {
-                file,
-                binaryStr
-              }
-            }),
-            method: 'POST'
-          });
-        };
-        reader.readAsArrayBuffer(file);
-      });
-    }
+    //
   } catch (err) {
-    console.error('ASSET UPLOAD', err);
+    console.error('ASSET LIST LOAD', err);
   }
   setLoading(false);
+};
+
+export const callGetFileList = async (setLoading: Function) => {
+  setLoading(true);
+  const response = await fetch('/api/assets/get', {
+    method: 'POST'
+  });
+  const data = await response.json();
+  setLoading(false);
+  return data;
+};
+
+export const callDeleteAsset = async (
+  setLoading: Function,
+  filename: string
+) => {
+  setLoading(true);
+  console.log('CALLING DELETE', filename);
+  const response = await fetch('/api/assets/delete', {
+    method: 'POST',
+    body: JSON.stringify({
+      filename
+    })
+  });
+  const data = await response.json();
+  setLoading(false);
+  return data;
 };

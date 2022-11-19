@@ -13,7 +13,7 @@ import InputMarkdown from '../../../components/common/InputMarkdown';
 import Switch from '../../../components/common/Switch';
 import styles from '../../../styles/modules/editingForms.module.scss';
 import { statusOptions } from '../../../constants';
-import { validateFormAlert } from '../../../helpers';
+import { validateFormAlert, sanitizeEventValue } from '../../../helpers';
 
 type Props = {
   alert: Alert | null;
@@ -52,7 +52,7 @@ const AlertEdit: NextPage<Props> = ({ alert }) => {
   const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: sanitizeEventValue(e)
     });
   };
   const handleValueChange = (name: string, val: string | Date) => {

@@ -6,6 +6,20 @@ import {
   AlertFormValidReturn
 } from '../types/types';
 
+export const sanitizeString = (str: string) =>
+  str
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+
+export const sanitizeEventValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  if (['text', 'textarea'].includes(e.target.type)) {
+    return sanitizeString(e.target.value);
+  }
+  return '';
+};
+
 export const getIsValidUserRole = (role: string): boolean =>
   !!role && roles.includes(role);
 

@@ -45,49 +45,54 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
   if (!session) {
     return res.status(403);
   }
-  const data = await new Promise(function (resolve, reject) {
-    const form = new IncomingForm();
-    form.parse(req, function (err, fields, files) {
-      if (err) return reject(err);
-      resolve({ fields, files });
-    });
-  });
-  // @ts-ignore
-  const img = data?.files?.files;
-  const contents = await fs.readFile(img.filepath, {
-    encoding: 'utf8'
-  });
-  const filename = img?.originalFilename;
-  const imgSize = sizeOf(img.filepath) || {};
-  const resizeConfig = getResizeConfig(imgSize.width, imgSize.height);
-  console.log('resizeConfig', resizeConfig);
-  const s3 = new AWS.S3({
-    accessKeyId: process.env.AWS__ACCESS_KEY,
-    secretAccessKey: process.env.AWS__ACCESS_SECRET
-  });
-
-  sharp(img.filepath)
-    .resize(resizeConfig) //{width: 1920, height: 1080}
-    .toBuffer()
-    .then((resizedImg) => {
-      const params = {
-        Bucket: process.env.AWS__BUCKET_NAME,
-        Key: 'files-dev/' + filename,
-        Body: resizedImg,
-        ACL: 'public-read'
-      };
-      // @ts-ignore
-      s3.upload(params, function (err) {
-        if (err) {
-          console.error(err);
-        }
-        console.log(
-          'Image uploaded successfully.',
-          `${process.env.AWS__BASE_DIR}files-dev/${filename}`
-        );
+  try {
+    const data = await new Promise(function (resolve, reject) {
+      const form = new IncomingForm();
+      form.parse(req, function (err, fields, files) {
+        if (err) return reject(err);
+        resolve({ fields, files });
       });
     });
-  return res.status(200).json({ filename });
+    // @ts-ignore
+    const img = data?.files?.files;
+    const contents = await fs.readFile(img.filepath, {
+      encoding: 'utf8'
+    });
+    const filename = img?.originalFilename.replaceAll(' ', '');
+    const imgSize = sizeOf(img.filepath) || {};
+    const resizeConfig = getResizeConfig(imgSize.width, imgSize.height);
+    console.log('resizeConfig', resizeConfig);
+    const s3 = new AWS.S3({
+      accessKeyId: process.env.AWS__ACCESS_KEY,
+      secretAccessKey: process.env.AWS__ACCESS_SECRET
+    });
+
+    sharp(img.filepath)
+      .resize(resizeConfig) //{width: 1920, height: 1080}
+      .toBuffer()
+      .then((resizedImg) => {
+        const params = {
+          Bucket: process.env.AWS__BUCKET_NAME,
+          Key: `files-${process.env.CONTENT_STAGE}/${filename}`,
+          Body: resizedImg,
+          ACL: 'public-read'
+        };
+        // @ts-ignore
+        s3.upload(params, function (err) {
+          if (err) {
+            console.error(err);
+          }
+          console.log(
+            'Image uploaded successfully.',
+            `${process.env.AWS__BASE_DIR}files-${process.env.CONTENT_STAGE}/${filename}`
+          );
+          return res.status(200).json({ filename });
+        });
+      });
+  } catch (err) {
+    console.error('UPLOAD ERROR', err);
+    return res.status(500);
+  }
 }
 
 export const config = {

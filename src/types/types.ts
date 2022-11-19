@@ -68,3 +68,10 @@ export type AlertFormValidReturn = {
   isFormValid: boolean;
   formErrors: AlertFormErrors;
 };
+
+export type Asset = {
+  filename: string;
+  fileDate: string;
+  size: string;
+  url: string;
+};
