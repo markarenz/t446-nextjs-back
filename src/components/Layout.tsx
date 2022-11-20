@@ -1,4 +1,5 @@
-import { PageMeta } from '../types/types';
+import { useState, useEffect } from 'react';
+import Router from 'next/router';
 import Header from './Header';
 import Footer from './Footer';
 import PageSeo from './PageSeo';
@@ -9,6 +10,7 @@ import { checkSession } from '../helpers';
 import styles from '../styles/modules/Layout.module.scss';
 import { useAppContext } from '../context/AppContext';
 import { useSession, signIn } from 'next-auth/react';
+import { PageMeta } from '../types/types';
 
 type Props = {
   children: JSX.Element;
@@ -19,7 +21,19 @@ const Layout: React.FC<Props> = ({ children, pageMeta }) => {
   const { data: session } = useSession();
   const isLoggedIn = checkSession(session);
   const isLoadingSession = session === undefined;
-  const { isLoading } = useAppContext();
+  const { isLoading, setLoading } = useAppContext();
+  useEffect(() => {
+    Router.events.on('routeChangeStart', (url) => {
+      setLoading(true);
+    });
+    Router.events.on('routeChangeComplete', (url) => {
+      setLoading(false);
+    });
+    Router.events.on('routeChangeError', (url) => {
+      setLoading(false);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [Router]);
   return (
     <div className={styles.layout}>
       <PageSeo pageMeta={pageMeta} />

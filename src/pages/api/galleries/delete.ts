@@ -1,9 +1,9 @@
 import { unstable_getServerSession } from 'next-auth/next';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authOptions } from '../auth/[...nextauth]';
-import { deleteAlert } from '../../../utility/db/queries/alerts';
+import { deleteGallery } from '../../../utility/db/queries/galleries';
 
-// ALERT DELETE
+// GALLERY DELETE
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await unstable_getServerSession(req, res, authOptions);
   if (!session) {
@@ -12,10 +12,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     let success = false;
     try {
       const { id } = JSON.parse(req.body);
-      const updateResult = await deleteAlert(id);
+      const updateResult = await deleteGallery(id);
       success = !!updateResult?.id;
     } catch (err) {
-      console.error('ALERT:DELETE', err);
+      console.error('GALLERY:DELETE', err);
     }
     return res.json({ success });
   }

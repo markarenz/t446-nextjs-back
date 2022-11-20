@@ -59,6 +59,10 @@ body {
   margin: 0;
   font-family: var(--font-base);
   color: var(--colors-gray-lightest);
+  &.modal-open {
+    overflow: hidden;
+    position: fixed;
+  }  
 }
 
 textarea:active, input:active,

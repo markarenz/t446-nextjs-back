@@ -1,23 +1,22 @@
 import { unstable_getServerSession } from 'next-auth/next';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authOptions } from '../auth/[...nextauth]';
-import { deleteAlert } from '../../../utility/db/queries/alerts';
+import { publishGalleries } from '../../../utility/db/queries/galleries';
 
-// ALERT DELETE
+// GALLERIES PUBLISH
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await unstable_getServerSession(req, res, authOptions);
+  let alert = null;
   if (!session) {
-    res.status(403);
+    return res.status(403);
   } else {
-    let success = false;
     try {
-      const { id } = JSON.parse(req.body);
-      const updateResult = await deleteAlert(id);
-      success = !!updateResult?.id;
+      await publishGalleries();
+      return res.status(200).json({ success: true });
     } catch (err) {
-      console.error('ALERT:DELETE', err);
+      console.error('ALERT:CREATE', err);
+      return res.status(500).json({ success: false });
     }
-    return res.json({ success });
   }
 }
 

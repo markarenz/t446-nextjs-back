@@ -19,8 +19,17 @@ const ImageSelectorItem: React.FC<Props> = ({
   handleAssetDelete
 }) => {
   const { filename, url } = asset;
+  const handleImageClick = (filename: string) => {
+    if (allowSelection) {
+      handleSelection(filename);
+    }
+  };
   return (
-    <div className={styles.root} style={{ backgroundImage: `url(${url})` }}>
+    <div
+      className={styles.root}
+      style={{ backgroundImage: `url(${url})` }}
+      onClick={() => handleImageClick(filename)}
+    >
       <div className={styles.idx}>{idx}</div>
       <div className={styles.btnDeleteWrap}>
         <IconButton title="delete" onClick={handleAssetDelete} color="primary">

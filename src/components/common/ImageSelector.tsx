@@ -25,7 +25,9 @@ const ImageSelector: React.FC<Props> = ({
   const [searchText, setSearchText] = useState<string>('');
   const { setLoading } = useAppContext();
   const filteredAssets = assetList.filter(
-    (a) => a.filename.includes(searchText) || searchText === ''
+    (a) =>
+      a.filename.toLowerCase().includes(searchText.toLocaleLowerCase()) ||
+      searchText === ''
   );
   const itemsPerPage = 10;
   const totalItems = filteredAssets.length;

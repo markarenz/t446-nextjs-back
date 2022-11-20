@@ -1,4 +1,7 @@
+import { AlertFormData } from '../types/types';
 import Router from 'next/router';
+import { statusOptions } from '../constants';
+import { isValidDate } from './index';
 
 export const callCreateNew = async (setLoading: Function) => {
   setLoading(true);
@@ -57,4 +60,52 @@ export const callPublish = async (setLoading: Function) => {
   }
   setLoading(false);
   return success;
+};
+
+export type FormErrors = {
+  title: string | null;
+  status: string | null;
+  dateStart: string | null;
+  dateEnd: string | null;
+};
+export type FormValidReturn = {
+  isFormValid: boolean;
+  formErrors: FormErrors;
+};
+
+export const validateFormAlert = (formData: AlertFormData): FormValidReturn => {
+  let isFormValid = true;
+  const formErrors: FormErrors = {
+    title: null,
+    status: null,
+    dateStart: null,
+    dateEnd: null
+  };
+  if (!formData.title || formData.title === '') {
+    formErrors.title = 'Please enter a title.';
+    isFormValid = false;
+  }
+  if (
+    !formData.status ||
+    !statusOptions.some((o) => o.value === formData.status)
+  ) {
+    formErrors.title = `Please select a status.`;
+    isFormValid = false;
+  }
+  if (!isValidDate(formData.dateStart)) {
+    formErrors.dateStart = 'Please enter a valid date.';
+    isFormValid = false;
+  }
+  if (!isValidDate(formData.dateEnd)) {
+    formErrors.dateEnd = 'Please enter a valid date.';
+    isFormValid = false;
+  }
+  const de = new Date(formData.dateEnd);
+  const ds = new Date(formData.dateStart);
+  if (ds > de) {
+    formErrors.dateEnd =
+      'Please use an end date that occurs after the start date.';
+    isFormValid = false;
+  }
+  return { isFormValid, formErrors };
 };

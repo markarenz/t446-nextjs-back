@@ -57,16 +57,19 @@ export type Gallery = {
 
 export type AlertFormData = {
   title: string;
+  status: string;
+  content: string;
   dateStart: Date;
   dateEnd: Date;
 };
-export type AlertFormErrors = {
-  title: string | null;
-  dateEnd: string | null;
-};
-export type AlertFormValidReturn = {
-  isFormValid: boolean;
-  formErrors: AlertFormErrors;
+
+export type GalleryFormData = {
+  title: string;
+  slug: string;
+  status: string;
+  content: string;
+  images: string;
+  pubDate: Date;
 };
 
 export type Asset = {

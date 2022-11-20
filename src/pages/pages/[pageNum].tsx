@@ -80,6 +80,7 @@ const Pages: NextPage<Props> = ({
             tableFields={tableFields}
             tableActions={tableActions}
             handleDelete={handleDelete}
+            viewPrefix=""
           />
           <PaginationNav
             pageNum={pageNum}

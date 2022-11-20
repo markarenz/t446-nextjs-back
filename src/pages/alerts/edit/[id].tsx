@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { NextPage, GetServerSideProps } from 'next';
 import Layout from '../../../components/Layout';
-import { Alert } from '../../../types/types';
+import { Alert } from '@prisma/client';
 import Router from 'next/router';
 import DatePicker from 'react-datepicker';
 import EditItemHeader from '../../../components/common/EditItemHeader';
@@ -13,7 +13,8 @@ import InputMarkdown from '../../../components/common/InputMarkdown';
 import Switch from '../../../components/common/Switch';
 import styles from '../../../styles/modules/editingForms.module.scss';
 import { statusOptions } from '../../../constants';
-import { validateFormAlert, sanitizeEventValue } from '../../../helpers';
+import { sanitizeEventValue } from '../../../helpers';
+import { validateFormAlert } from '../../../helpers/alerts';
 
 type Props = {
   alert: Alert | null;
@@ -61,7 +62,6 @@ const AlertEdit: NextPage<Props> = ({ alert }) => {
       [name]: val
     });
   };
-
   const { isFormValid, formErrors } = validateFormAlert(formData);
   return (
     <Layout pageMeta={pageMeta}>

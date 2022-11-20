@@ -11,13 +11,15 @@ type Props = {
   slug: string;
   tableActions: string[];
   handleDelete: Function;
+  viewPrefix: string;
 };
 const PageDataTable: React.FC<Props> = ({
   items,
   slug,
   tableFields,
   tableActions,
-  handleDelete
+  handleDelete,
+  viewPrefix
 }) => {
   const router = useRouter();
   const handleNavigateToEdit = (id: string): void => {
@@ -61,7 +63,7 @@ const PageDataTable: React.FC<Props> = ({
                 <span className="mr-1">
                   <a
                     // @ts-ignore
-                    href={`https://www.indytroop446.org/${i?.slug}`}
+                    href={`https://www.indytroop446.org/${viewPrefix}${i?.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
