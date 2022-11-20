@@ -132,7 +132,6 @@ export const publishGalleries = async () => {
     };
     //@ts-ignore
     await s3.upload(params, function (err: string, data: Gallery[]) {
-      console.log('UPLOAD', err);
       if (err) {
         console.error('JSON UPLOAD ERROR:', err);
       } else {
