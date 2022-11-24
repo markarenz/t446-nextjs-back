@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { NextPage, GetServerSideProps } from 'next';
 import Layout from '../../components/Layout';
-import { Page } from '../../types/types';
+import { Page } from '@prisma/client';
 import ConfirmationModal from '../../components/common/ConfirmationModal';
 import PageDataTable from '../../components/common/PageDataTable';
 import PaginationNav from '../../components/common/PaginationNav';
