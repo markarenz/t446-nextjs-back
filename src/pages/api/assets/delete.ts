@@ -18,7 +18,7 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
 
     const params = {
       Bucket: process.env.AWS__BUCKET_NAME,
-      Key: `files-${process.env.CONTENT_STAGE}/${filename}`
+      Key: `files/${filename}`
     };
     console.log('DELETING PARAMS', params);
 

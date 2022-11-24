@@ -73,7 +73,7 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
       .then((resizedImg) => {
         const params = {
           Bucket: process.env.AWS__BUCKET_NAME,
-          Key: `files-${process.env.CONTENT_STAGE}/${filename}`,
+          Key: `files/${filename}`,
           Body: resizedImg,
           ACL: 'public-read'
         };
@@ -84,7 +84,7 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
           }
           console.log(
             'Image uploaded successfully.',
-            `${process.env.AWS__BASE_DIR}files-${process.env.CONTENT_STAGE}/${filename}`
+            `${process.env.AWS__BASE_DIR}files/${filename}`
           );
           return res.status(200).json({ filename });
         });

@@ -1,71 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { NextPage, GetServerSideProps } from 'next';
 import Layout from '../../../components/Layout';
-import { Gallery } from '@prisma/client';
+import { Setting } from '@prisma/client';
 import Router from 'next/router';
 import DatePicker from 'react-datepicker';
 import EditItemHeader from '../../../components/common/EditItemHeader';
 import Button from '../../../components/common/Button';
 import { useAppContext } from '../../../context/AppContext';
-import { getItemGallery } from '../../../utility/db/queries/galleries';
+import { getItemSetting } from '../../../utility/db/queries/settings';
 import Input from '../../../components/common/Input';
 import InputMarkdown from '../../../components/common/InputMarkdown';
-import InputGalleryImages from '../../../components/common/InputGalleryImages';
 import Switch from '../../../components/common/Switch';
-import { callGetFileList } from '../../../helpers/assets';
 import styles from '../../../styles/modules/editingForms.module.scss';
 import { statusOptions } from '../../../constants';
 import { sanitizeEventValue } from '../../../helpers';
-import { validateFormGallery } from '../../../helpers/galleries';
-import { Asset } from '../../../types/types';
+import { validateFormSetting } from '../../../helpers/settings';
 
 type Props = {
-  gallery: Gallery | null;
-  baseImgUrl: string;
+  setting: Setting | null;
 };
 
-const GalleryEdit: NextPage<Props> = ({ gallery, baseImgUrl }) => {
+const SettingEdit: NextPage<Props> = ({ setting }) => {
   const defaultData = {
-    title: gallery?.title || '',
-    slug: gallery?.slug || '',
-    status: gallery?.status || '',
-    content: gallery?.content || '',
-    images: gallery?.images || '',
-    pubDate: gallery?.pubDate || new Date()
+    title: setting?.title || '',
+    key: setting?.key || '',
+    value: setting?.value || ''
   };
   const [formData, setFormData] = useState(defaultData);
-  const [assetList, setAssetList] = useState<Asset[]>([]);
-  const handleLoadFileList = async () => {
-    const newAssetList = await callGetFileList(setLoading);
-    setAssetList(newAssetList);
-  };
-  const handleTriggerRefresh = () => {
-    handleLoadFileList();
-  };
-  useEffect(() => {
-    handleLoadFileList();
-    //eslint-disable-next-line
-  }, []);
-
   const pageMeta = {
-    title: 'Edit Gallery',
-    metedesc: 'Editing gallery for T446 website.'
+    title: 'Edit Setting',
+    metedesc: 'Editing setting for T446 website.'
   };
   const { setLoading } = useAppContext();
   const handleSave = async () => {
     setLoading(true);
     const body = {
-      id: gallery?.id,
+      id: setting?.id,
       formData
     };
-    await fetch('/api/galleries/update', {
+    await fetch('/api/settings/update', {
       method: 'POST',
       body: JSON.stringify(body)
     });
     setLoading(false);
   };
   const handleExit = () => {
-    const url = `/galleries/1`;
+    const url = `/settings/1`;
     Router.replace(url);
   };
   const hanleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,15 +60,14 @@ const GalleryEdit: NextPage<Props> = ({ gallery, baseImgUrl }) => {
       [name]: val
     });
   };
-  const { isFormValid, formErrors } = validateFormGallery(formData);
-
+  const { isFormValid, formErrors } = validateFormSetting(formData);
   return (
     <Layout pageMeta={pageMeta}>
       <div className={styles.pageRoot}>
         <div className="container-xl">
-          <EditItemHeader title="Gallery: Edit" />
+          <EditItemHeader title="Setting: Edit" />
           <div className="card">
-            <div className="card-header">{`Editing: ${formData?.title}`}</div>
+            <div className="card-header">{`Editing: ${setting?.title}`}</div>
             <div className="card-body">
               <div className={styles.form}>
                 <div className="grid">
@@ -106,50 +85,33 @@ const GalleryEdit: NextPage<Props> = ({ gallery, baseImgUrl }) => {
                       <div className="error">{formErrors.title}</div>
                     )}
                   </div>
-                  <div className="col-6">
-                    <label>Status</label>
-                    <Switch
-                      name="status"
-                      tabIndex={2}
-                      value={formData.status}
-                      onChange={handleValueChange}
-                      options={statusOptions}
-                    />
-                    {formErrors.status && (
-                      <div className="error">{formErrors.status}</div>
-                    )}
-                  </div>
-                  <div className="col-6">
-                    <label>Publish Date</label>
-                    <DatePicker
-                      name="pubDate"
-                      selected={new Date(formData.pubDate)}
-                      onChange={(date: Date) =>
-                        handleValueChange('pubDate', date)
-                      }
-                    />
-                  </div>
                   <div className="col-12">
-                    <label>Content</label>
-                    <InputMarkdown
-                      value={formData.content}
-                      name="content"
-                      tabIndex={1}
-                      rows={5}
+                    <label>Key</label>
+                    <Input
+                      type="text"
+                      name="key"
+                      autoFocus={true}
+                      tabIndex={2}
+                      value={formData.key}
                       onChange={hanleInputChange}
                     />
+                    {formErrors.title && (
+                      <div className="error">{formErrors.key}</div>
+                    )}
                   </div>
-
                   <div className="col-12">
-                    <InputGalleryImages
-                      value={formData.images}
-                      onChange={handleValueChange}
-                      baseImgUrl={baseImgUrl}
-                      assetList={assetList}
-                      handleTriggerRefresh={handleTriggerRefresh}
+                    <label>Value</label>
+                    <Input
+                      type="text"
+                      name="value"
+                      autoFocus={true}
+                      tabIndex={3}
+                      rows={7}
+                      value={formData.value}
+                      onChange={hanleInputChange}
                     />
                     {formErrors.title && (
-                      <div className="error">{formErrors.images}</div>
+                      <div className="error">{formErrors.value}</div>
                     )}
                   </div>
                 </div>
@@ -184,14 +146,12 @@ const GalleryEdit: NextPage<Props> = ({ gallery, baseImgUrl }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
-  const { gallery } = await getItemGallery(`${id}`);
-  const baseImgUrl = `${process.env.AWS__BASE_DIR}files/`;
+  const { setting } = await getItemSetting(`${id}`);
   return {
     props: {
-      gallery,
-      baseImgUrl
+      setting
     }
   };
 };
 
-export default GalleryEdit;
+export default SettingEdit;

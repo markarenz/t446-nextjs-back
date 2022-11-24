@@ -1,8 +1,8 @@
 import { unstable_getServerSession } from 'next-auth/next';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authOptions } from '../auth/[...nextauth]';
-import { validateFormGallery } from '../../../helpers/galleries';
-import { updateGallery } from '../../../utility/db/queries/galleries';
+import { validateFormSetting } from '../../../helpers/settings';
+import { updateSetting } from '../../../utility/db/queries/settings';
 
 // GALLERY UPDATE
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,15 +13,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     let success = false;
     try {
       const { id, formData } = JSON.parse(req.body);
-      const { isFormValid } = validateFormGallery(formData);
+      const { isFormValid } = validateFormSetting(formData);
       if (isFormValid) {
-        const updateResult = await updateGallery(id, formData);
+        const updateResult = await updateSetting(id, formData);
         success = !!updateResult?.id;
       } else {
         success = false;
       }
     } catch (err) {
-      console.error('GALLERY:UPDATE', err);
+      console.error('SETTING:UPDATE', err);
     }
     return res.json({ success });
   }

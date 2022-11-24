@@ -10,7 +10,7 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
   if (!session) {
     return res.status(403);
   }
-  const directoryName = `files-${process.env.CONTENT_STAGE}/`;
+  const directoryName = `files/`;
   let assets: Asset[] = [];
   const s3 = new AWS.S3({
     accessKeyId: process.env.AWS__ACCESS_KEY,
@@ -52,11 +52,20 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
           'YYYY-MM-DD HH:mm:ss'
         );
         asset.size = size + ' ' + sizeSuffix;
-        asset.url = `${process.env.AWS__BASE_DIR}files-${process.env.CONTENT_STAGE}/${asset.filename}`;
+        asset.url = `${process.env.AWS__BASE_DIR}files/${asset.filename}`;
         assets.push(asset);
       }
     });
-    res.json(assets);
+    const sortedAssets = assets.sort((a, b) => {
+      if (a.fileDate < b.fileDate) {
+        return 1;
+      }
+      if (a.fileDate > b.fileDate) {
+        return -1;
+      }
+      return 0;
+    });
+    res.json(sortedAssets);
   });
 }
 

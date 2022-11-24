@@ -2,57 +2,51 @@ import { useState } from 'react';
 import Router from 'next/router';
 import type { NextPage, GetServerSideProps } from 'next';
 import Layout from '../../components/Layout';
-import { Gallery } from '../../types/types';
+import { Setting } from '@prisma/client';
 import ConfirmationModal from '../../components/common/ConfirmationModal';
 import PageDataTable from '../../components/common/PageDataTable';
 import PaginationNav from '../../components/common/PaginationNav';
-import PageDataHeader from '../../components/common/PageDataHeader';
-import styles from '../../styles/modules/Dashboard.module.scss';
 import { useAppContext } from '../../context/AppContext';
-import {
-  callCreateNew,
-  callDelete,
-  callPublish
-} from '../../helpers/galleries';
-import { getItemsGalleries } from '../../utility/db/queries/galleries';
+import PageDataHeader from '../../components/common/PageDataHeader';
+import { callCreateNew, callDelete, callPublish } from '../../helpers/settings';
+import { getItemsSettings } from '../../utility/db/queries/settings';
+import styles from '../../styles/modules/Dashboard.module.scss';
 
 type Props = {
-  galleries: Gallery[];
+  settings: Setting[];
   pageNum: number;
   itemsPerPage: number;
   numItems: number;
   defaultSearchText: string;
 };
 
-const Galleries: NextPage<Props> = ({
-  galleries,
+const Settings: NextPage<Props> = ({
+  settings,
   pageNum,
   itemsPerPage,
   numItems,
   defaultSearchText
 }) => {
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<Gallery | null>(null);
+  const [selectedItem, setSelectedItem] = useState<Setting | null>(null);
   const { setLoading } = useAppContext();
   const pageMeta = {
-    title: 'Galleries',
-    metedesc: 'This page holds a list of alerts for the T446 website.'
+    title: 'Settings',
+    metedesc: 'This page holds a list of settings for the T446 website.'
   };
 
-  const handleDelete = (gallery: Gallery): void => {
+  const handleDelete = (setting: Setting): void => {
     setIsConfirmingDelete(true);
-    setSelectedItem(gallery);
+    setSelectedItem(setting);
   };
   const handleDeleteCancel = (): void => {
     setIsConfirmingDelete(false);
   };
-  const handleDeleteOk = async (id: string) => {
-    setIsConfirmingDelete(false);
+  const handleDeleteOk = async () => {
     await callDelete(setLoading, setIsConfirmingDelete, `${selectedItem?.id}`);
   };
   const setSearchFilter = (searchText: string) => {
-    const url = `/galleries/1?search=${encodeURIComponent(searchText)}`;
-    Router.replace(url);
+    Router.replace(`/settings/1?search=${encodeURIComponent(searchText)}`);
   };
   const handleCreateNew = async () => {
     callCreateNew(setLoading);
@@ -60,15 +54,11 @@ const Galleries: NextPage<Props> = ({
   const handlePublish = async () => {
     callPublish(setLoading);
   };
-  const tableActions = ['edit', 'view', 'delete'];
+  const tableActions = ['edit', 'delete'];
   const tableFields = [
     {
       title: 'Title',
       slug: 'title'
-    },
-    {
-      title: 'Status',
-      slug: 'status'
     }
   ];
   return (
@@ -76,33 +66,33 @@ const Galleries: NextPage<Props> = ({
       <div className={styles.pageRoot}>
         <div className="container-xl">
           <PageDataHeader
-            title="Galleries"
+            title="Settings"
             setSearchFilter={setSearchFilter}
             defaultSearchText={defaultSearchText}
             handleCreateNew={handleCreateNew}
             handlePublish={handlePublish}
           />
           <PageDataTable
-            items={galleries}
-            slug="galleries"
+            items={settings}
+            slug="settings"
             tableFields={tableFields}
             tableActions={tableActions}
             handleDelete={handleDelete}
-            viewPrefix="gallery/"
+            viewPrefix=""
           />
           <PaginationNav
             pageNum={pageNum}
             itemsPerPage={itemsPerPage}
-            itemsLoaded={galleries.length}
+            itemsLoaded={settings.length}
             numItems={numItems}
-            path="/alerts/"
+            path="/settings/"
           />
         </div>
         {isConfirmingDelete && (
           <ConfirmationModal
-            title="Delete Alert"
+            title="Delete Setting"
             handleCancel={handleDeleteCancel}
-            handleOk={handleDeleteOk}
+            handleOk={() => handleDeleteOk()}
           >
             <span>Are you sure you want to delete this item?</span>
           </ConfirmationModal>
@@ -118,14 +108,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const itemsPerPage = 10;
   const skip = (pageNum - 1) * itemsPerPage;
   const searchText = search === undefined ? '' : `${search}`;
-  const { numItems, galleries } = await getItemsGalleries(
+  const { numItems, settings } = await getItemsSettings(
     searchText,
     skip,
     itemsPerPage
   );
   return {
     props: {
-      galleries,
+      settings,
       pageNum,
       itemsPerPage,
       numItems,
@@ -134,4 +124,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default Galleries;
+export default Settings;

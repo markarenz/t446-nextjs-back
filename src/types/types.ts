@@ -72,6 +72,12 @@ export type GalleryFormData = {
   pubDate: Date;
 };
 
+export type SettingFormData = {
+  title: string;
+  key: string;
+  value: string;
+};
+
 export type Asset = {
   filename: string;
   fileDate: string;

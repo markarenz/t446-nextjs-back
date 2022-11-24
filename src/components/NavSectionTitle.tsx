@@ -5,6 +5,7 @@ import {
   IconPages,
   IconGalleries,
   IconAssets,
+  IconSettings,
   IconTools
 } from './img/icons';
 
@@ -26,6 +27,7 @@ const NavSectionTitle: React.FC<Props> = ({ navItem }) => {
             {navItem.title === 'Pages' && <IconPages />}
             {navItem.title === 'Galleries' && <IconGalleries />}
             {navItem.title === 'Assets' && <IconAssets />}
+            {navItem.title === 'Settings' && <IconSettings />}
             {navItem.title === 'Tools' && <IconTools />}
           </div>
           {navItem.title}

@@ -26,6 +26,12 @@ export const navItems = [
     path: '/assets'
   },
   {
+    title: 'Settings',
+    id: 3,
+    roles: ['admin'],
+    path: '/settings/1'
+  },
+  {
     title: 'Tools',
     id: 4,
     roles: ['admin'],

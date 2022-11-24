@@ -44,3 +44,12 @@ model Gallery {
   dateCreated  DateTime
   dateModified DateTime
 }
+
+model Setting {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  key          String
+  value        String
+  dateCreated  DateTime
+  dateModified DateTime
+}
