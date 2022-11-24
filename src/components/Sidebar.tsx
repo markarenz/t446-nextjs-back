@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import Link from 'next/link';
+import Router from 'next/router';
 import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import styles from '../styles/modules/Sidebar.module.scss';
@@ -12,18 +11,20 @@ const Sidebar = () => {
   const { isSidebarOpen } = useAppContext();
   const { data: session } = useSession();
   const userRole = getRoleFromSession(session);
+  const handleImageClick = () => {
+    Router.replace('/');
+  };
   return (
     <div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
       <div className={styles.inner}>
-        <Link href="/">
-          <Image
-            src="/img/t446-menu-photo.jpg"
-            alt="Troop 446"
-            className="responsive cursor-pointer"
-            width={640}
-            height={233}
-          />
-        </Link>
+        <Image
+          src="/img/t446-menu-photo.jpg"
+          alt="Troop 446"
+          className="responsive cursor-pointer"
+          width={640}
+          height={233}
+          onClick={handleImageClick}
+        />
         <nav className={styles.navArea}>
           {navItems
             .filter((i) => i.roles.includes(userRole))

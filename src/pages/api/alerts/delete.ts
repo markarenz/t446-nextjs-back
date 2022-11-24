@@ -15,7 +15,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       const updateResult = await deleteAlert(id);
       success = !!updateResult?.id;
     } catch (err) {
-      console.error('ALERT:UPDATE', err);
+      console.error('ALERT:DELETE', err);
     }
     return res.json({ success });
   }

@@ -2,7 +2,7 @@ import prisma from '../../../../lib/prismadb';
 import { unstable_getServerSession } from 'next-auth/next';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authOptions } from '../auth/[...nextauth]';
-import { validateFormAlert } from '../../../helpers';
+import { validateFormAlert } from '../../../helpers/alerts';
 import { updateAlert } from '../../../utility/db/queries/alerts';
 
 // ALERT UPDATE

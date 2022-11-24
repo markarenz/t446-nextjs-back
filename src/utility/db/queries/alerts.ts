@@ -1,5 +1,5 @@
 import prisma from '../../../../lib/prismadb';
-const AWS = require('aws-sdk');
+import AWS from 'aws-sdk';
 import { Alert } from '@prisma/client';
 import { serializeDate } from '../../../helpers';
 
@@ -135,6 +135,7 @@ export const publishAlerts = async () => {
       Body: data,
       ACL: 'public-read'
     };
+    //@ts-ignore
     await s3.upload(params, function (err: string, data: Alert[]) {
       console.log('UPLOAD', err);
       if (err) {
@@ -144,7 +145,7 @@ export const publishAlerts = async () => {
       }
     });
   } catch (err) {
-    console.error('publishAlerts:', err);
+    console.error('Publish Error:', err);
   }
   return {
     success

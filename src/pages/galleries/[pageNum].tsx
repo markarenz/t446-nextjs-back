@@ -1,13 +1,19 @@
 import { useState } from 'react';
+import Router from 'next/router';
 import type { NextPage, GetServerSideProps } from 'next';
 import Layout from '../../components/Layout';
-import { Gallery } from '../../types/types';
+import { Gallery } from '@prisma/client';
 import ConfirmationModal from '../../components/common/ConfirmationModal';
 import PageDataTable from '../../components/common/PageDataTable';
 import PaginationNav from '../../components/common/PaginationNav';
 import PageDataHeader from '../../components/common/PageDataHeader';
 import styles from '../../styles/modules/Dashboard.module.scss';
-import Router from 'next/router';
+import { useAppContext } from '../../context/AppContext';
+import {
+  callCreateNew,
+  callDelete,
+  callPublish
+} from '../../helpers/galleries';
 import { getItemsGalleries } from '../../utility/db/queries/galleries';
 
 type Props = {
@@ -18,7 +24,7 @@ type Props = {
   defaultSearchText: string;
 };
 
-const Alerts: NextPage<Props> = ({
+const Galleries: NextPage<Props> = ({
   galleries,
   pageNum,
   itemsPerPage,
@@ -27,6 +33,7 @@ const Alerts: NextPage<Props> = ({
 }) => {
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Gallery | null>(null);
+  const { setLoading } = useAppContext();
   const pageMeta = {
     title: 'Galleries',
     metedesc: 'This page holds a list of alerts for the T446 website.'
@@ -39,18 +46,19 @@ const Alerts: NextPage<Props> = ({
   const handleDeleteCancel = (): void => {
     setIsConfirmingDelete(false);
   };
-  const handleDeleteOk = (id: string): void => {
+  const handleDeleteOk = async (id: string) => {
     setIsConfirmingDelete(false);
+    await callDelete(setLoading, setIsConfirmingDelete, `${selectedItem?.id}`);
   };
   const setSearchFilter = (searchText: string) => {
     const url = `/galleries/1?search=${encodeURIComponent(searchText)}`;
     Router.replace(url);
   };
   const handleCreateNew = async () => {
-    console.log('NEW GALLERY');
+    callCreateNew(setLoading);
   };
   const handlePublish = async () => {
-    console.log('PUBLISH');
+    callPublish(setLoading);
   };
   const tableActions = ['edit', 'view', 'delete'];
   const tableFields = [
@@ -80,6 +88,7 @@ const Alerts: NextPage<Props> = ({
             tableFields={tableFields}
             tableActions={tableActions}
             handleDelete={handleDelete}
+            viewPrefix="gallery/"
           />
           <PaginationNav
             pageNum={pageNum}
@@ -125,4 +134,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default Alerts;
+export default Galleries;

@@ -1,29 +1,31 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Page, Alert, Gallery, FieldDef } from '../../types/types';
+import { Alert, Gallery, Setting, Page } from '@prisma/client';
+import { FieldDef } from '../../types/types';
 import IconButton from '../../components/common/IconButton';
 import { IconEdit, IconView, IconDelete } from '../../components/img/icons';
 
 // handleNavigateToEdit
 type Props = {
-  items: Page[] | Alert[] | Gallery[]; // Add other types
+  items: Alert[] | Gallery[] | Setting[] | Page[];
   tableFields: FieldDef[];
   slug: string;
   tableActions: string[];
   handleDelete: Function;
+  viewPrefix: string;
 };
 const PageDataTable: React.FC<Props> = ({
   items,
   slug,
   tableFields,
   tableActions,
-  handleDelete
+  handleDelete,
+  viewPrefix
 }) => {
   const router = useRouter();
   const handleNavigateToEdit = (id: string): void => {
     router.replace(`/${slug}/edit/${id}`);
   };
-
   return (
     <table className="mb-2">
       <thead>
@@ -39,12 +41,16 @@ const PageDataTable: React.FC<Props> = ({
           <tr key={`${i.id}`}>
             <td>
               <label>Title:</label>
-              <Link href={`pages/edit/${i.id}`}>{i.title}</Link>
+              <Link href={`edit/${i.id}`}>{i.title}</Link>
             </td>
-            <td>
-              <label>Status:</label>
-              {i.status.toUpperCase()}
-            </td>
+            {/* @ts-ignore */}
+            {i?.status && (
+              <td>
+                <label>Status:</label>
+                {/* @ts-ignore */}
+                {i.status.toUpperCase()}
+              </td>
+            )}
             <td className="right">
               {tableActions.includes('edit') && (
                 <span className="mr-1">
@@ -61,7 +67,7 @@ const PageDataTable: React.FC<Props> = ({
                 <span className="mr-1">
                   <a
                     // @ts-ignore
-                    href={`https://www.indytroop446.org/${i?.slug}`}
+                    href={`https://www.indytroop446.org/${viewPrefix}${i?.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

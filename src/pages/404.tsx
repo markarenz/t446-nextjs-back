@@ -1,6 +1,5 @@
-import Link from 'next/link';
 import styles from '../styles/modules/Custom404.module.scss';
-import Button from '../components/common/Button';
+import LinkButton from '../components/common/LinkButton';
 
 export default function Custom404() {
   const pageMeta = {
@@ -13,18 +12,15 @@ export default function Custom404() {
         <div className={styles.big404}>404</div>
         <h1 className="mb-2">404 - Page Not Found, Scout!</h1>
         <div>
-          <Link href="/">
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={() => {}}
-              disabled={false}
-              tabIndex={1}
-            >
-              <span>Go Home</span>
-            </Button>
-          </Link>
+          <LinkButton
+            variant="contained"
+            color="primary"
+            size="large"
+            tabIndex={1}
+            href="/"
+          >
+            <span>Go Home</span>
+          </LinkButton>
         </div>
       </div>
     </div>

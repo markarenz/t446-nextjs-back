@@ -23,7 +23,7 @@ const PaginationNav: React.FC<Props> = ({
     <div className={styles.root}>
       <span className={styles.navBtnWrapper}>
         {pageNum > 1 && (
-          <Link href={`${path}${pageNum - 1}`}>
+          <Link href={`${path}${pageNum - 1}`} passHref>
             <span className="scaleHover">&#9664;</span>
           </Link>
         )}
@@ -33,7 +33,7 @@ const PaginationNav: React.FC<Props> = ({
       </span>
       <span className={styles.navBtnWrapper}>
         {moreItems && (
-          <Link href={`${path}${pageNum + 1}`} className="scaleHover">
+          <Link href={`${path}${pageNum + 1}`} className="scaleHover" passHref>
             <span className="scaleHover">&#9654;</span>
           </Link>
         )}

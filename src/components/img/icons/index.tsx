@@ -11,3 +11,6 @@ export { default as IconView } from './IconView';
 export { default as IconNewItem } from './IconNewItem';
 export { default as IconPublish } from './IconPublish';
 export { default as IconSearch } from './IconSearch';
+export { default as IconClose } from './IconClose';
+export { default as IconRefresh } from './IconRefresh';
+export { default as IconSettings } from './IconSettings';

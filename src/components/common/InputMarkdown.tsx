@@ -49,7 +49,7 @@ const InputMarkdown: React.FC<Props> = ({
         {isPreviewing && (
           <div className="col-6">
             <div className={styles.previewWrap}>
-              <ReactMarkdown>{value}</ReactMarkdown>
+              <ReactMarkdown skipHtml>{value}</ReactMarkdown>
             </div>
           </div>
         )}

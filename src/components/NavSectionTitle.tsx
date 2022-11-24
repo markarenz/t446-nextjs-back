@@ -5,6 +5,7 @@ import {
   IconPages,
   IconGalleries,
   IconAssets,
+  IconSettings,
   IconTools
 } from './img/icons';
 
@@ -19,13 +20,14 @@ type Props = {
 const NavSectionTitle: React.FC<Props> = ({ navItem }) => {
   return (
     <div className={styles.navSectionTitle}>
-      <Link href={navItem.path}>
+      <Link href={navItem.path} passHref>
         <div className={styles.titleWrap}>
           <div className={styles.iconWrap}>
             {navItem.title === 'Alerts' && <IconAlerts />}
             {navItem.title === 'Pages' && <IconPages />}
             {navItem.title === 'Galleries' && <IconGalleries />}
             {navItem.title === 'Assets' && <IconAssets />}
+            {navItem.title === 'Settings' && <IconSettings />}
             {navItem.title === 'Tools' && <IconTools />}
           </div>
           {navItem.title}

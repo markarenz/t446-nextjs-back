@@ -1,0 +1,80 @@
+.uploader {
+  .uploaderStage{
+    position:relative;
+    background-color: var(--colors-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    width:100%;  
+    .messaging{
+      text-align:center;
+      padding:1rem;
+      h3{
+        padding: 1rem;
+      }
+    }
+    .imgUploadInput{
+      cursor: pointer;
+      width:100%;
+      height:100%;
+      position:absolute;
+      left:0;
+      top:0;
+      opacity:0;
+    }
+  }
+
+  .previews {
+    padding-top:1rem;
+    display:flex;
+    .preview {
+      position:relative;
+      display:inline-block;
+      width:100px;
+      height:100px;
+      border-radius: 6px;
+      background-color: var(-colors-gray-900);
+      background-size: cover;
+      background-position: center;
+      margin-bottom:1rem;
+      margin-right:1rem;
+      .inner {
+        width:100%;
+        height:100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .uploaded{
+          width:3rem;
+          height:3rem;
+          font-size: 2rem;
+          background-color: rgba(0,0,0,0.75);
+          border-radius:100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: scale(0);
+          opacity:0;
+          transition: 0.3s all ease-in-out;
+          &.complete {
+            transform: scale(1.0);
+            opacity:1.0;
+          }
+        }
+      }
+      .closeBtnWrap{
+        position:absolute;
+        top:-0.25rem;
+        left: -0.25rem;
+        transform: scale(0);
+        opacity:0;
+        transition: 0.3s all ease-in-out;
+        &.staged{
+          transform: scale(1.0);
+          opacity:1.0;
+        }
+      }
+    }  
+  }
+  
+}
+
