@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Router from 'next/router';
 import type { NextPage, GetServerSideProps } from 'next';
 import Layout from '../../components/Layout';
-import { Alert } from '../../types/types';
+import { Alert } from '@prisma/client';
 import ConfirmationModal from '../../components/common/ConfirmationModal';
 import PageDataTable from '../../components/common/PageDataTable';
 import PaginationNav from '../../components/common/PaginationNav';
