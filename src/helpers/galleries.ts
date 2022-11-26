@@ -20,6 +20,23 @@ export const callCreateNew = async (setLoading: Function) => {
   setLoading(false);
 };
 
+export const callUpdate = async (
+  setLoading: Function,
+  id: string,
+  formData: GalleryFormData
+) => {
+  setLoading(true);
+  const body = {
+    id,
+    formData
+  };
+  await fetch('/api/galleries/update', {
+    method: 'POST',
+    body: JSON.stringify(body)
+  });
+  setLoading(false);
+};
+
 export const callDelete = async (
   setLoading: Function,
   setIsConfirmingDelete: Function,

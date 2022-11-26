@@ -1,5 +1,5 @@
-import prisma from '../../../../lib/prismadb';
 import AWS from 'aws-sdk';
+import prisma from '../../../../lib/prismadb';
 import { Alert } from '@prisma/client';
 import { serializeDate } from '../../../helpers';
 

@@ -1,14 +1,7 @@
 import type { NextPage } from 'next';
 import Layout from '../components/Layout';
-import Link from 'next/link';
-import prisma from '../../lib/prismadb';
-import { Page } from '../types/types';
 import T446Logo from '../components/img/T446Logo';
 import styles from '../styles/modules/Dashboard.module.scss';
-
-// type Props = {
-//   pages: Page[];
-// };
 
 const Dashboard: NextPage = () => {
   const pageMeta = {
@@ -20,8 +13,15 @@ const Dashboard: NextPage = () => {
       <div className={styles.pageRoot}>
         <div className={styles.logoWrap}>
           <T446Logo />
-          <h2>Troop 446 CMS</h2>
-          <Link href="/test">Test Link</Link>
+          <h2 className="mb-2">Troop 446 CMS</h2>
+          <div className="container-lg text-center">
+            <p>
+              Welcome to the Troop 446 Content Management System. With this
+              tool, you can edit the data used by the frontend website. To
+              publish your changes, use the publish tool for each type of item:
+              page, gallery, alert, etc.
+            </p>
+          </div>
         </div>
       </div>
     </Layout>

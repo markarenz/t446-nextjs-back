@@ -1,13 +1,13 @@
 import { unstable_getServerSession } from 'next-auth/next';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authOptions } from '../auth/[...nextauth]';
+import { getIsAdmin } from '../../../helpers';
 import { publishSettings } from '../../../utility/db/queries/settings';
 
 // SETTINGS PUBLISH
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await unstable_getServerSession(req, res, authOptions);
-  let alert = null;
-  if (!session) {
+  if (!session || !getIsAdmin(session)) {
     return res.status(403);
   } else {
     try {

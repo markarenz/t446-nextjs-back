@@ -20,7 +20,22 @@ export const callCreateNew = async (setLoading: Function) => {
   setLoading(false);
 };
 
-export const callUpdate = async () => {};
+export const callUpdate = async (
+  setLoading: Function,
+  id: string,
+  formData: AlertFormData
+) => {
+  setLoading(true);
+  const body = {
+    id,
+    formData
+  };
+  await fetch('/api/alerts/update', {
+    method: 'POST',
+    body: JSON.stringify(body)
+  });
+  setLoading(false);
+};
 
 export const callDelete = async (
   setLoading: Function,
@@ -41,7 +56,7 @@ export const callDelete = async (
       await Router.replace(url);
     }
   } catch (err) {
-    console.error('Create Alert Error', err);
+    console.error('Delete Alert Error', err);
   }
   setLoading(false);
 };
@@ -89,7 +104,7 @@ export const validateFormAlert = (formData: AlertFormData): FormValidReturn => {
     !formData.status ||
     !statusOptions.some((o) => o.value === formData.status)
   ) {
-    formErrors.title = `Please select a status.`;
+    formErrors.status = `Please select a status.`;
     isFormValid = false;
   }
   if (!isValidDate(formData.dateStart)) {

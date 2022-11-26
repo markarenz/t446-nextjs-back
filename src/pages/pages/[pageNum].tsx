@@ -5,10 +5,13 @@ import { Page } from '@prisma/client';
 import ConfirmationModal from '../../components/common/ConfirmationModal';
 import PageDataTable from '../../components/common/PageDataTable';
 import PaginationNav from '../../components/common/PaginationNav';
+import { useAppContext } from '../../context/AppContext';
 import PageDataHeader from '../../components/common/PageDataHeader';
-import styles from '../../styles/modules/Dashboard.module.scss';
 import Router from 'next/router';
+import { callCreateNew, callDelete, callPublish } from '../../helpers/pages';
 import { getItemsPages } from '../../utility/db/queries/pages';
+import ProtectedByRole from '../../components/common/ProtectedByRole';
+import styles from '../../styles/modules/Dashboard.module.scss';
 
 type Props = {
   pages: Page[];
@@ -27,11 +30,11 @@ const Pages: NextPage<Props> = ({
 }) => {
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Page | null>(null);
+  const { setLoading } = useAppContext();
   const pageMeta = {
     title: 'Pages',
     metedesc: 'This page holds a list of pages for the T446 website.'
   };
-
   const handleDelete = (page: Page): void => {
     setIsConfirmingDelete(true);
     setSelectedItem(page);
@@ -39,8 +42,8 @@ const Pages: NextPage<Props> = ({
   const handleDeleteCancel = (): void => {
     setIsConfirmingDelete(false);
   };
-  const handleDeleteOk = (id: string): void => {
-    setIsConfirmingDelete(false);
+  const handleDeleteOk = async () => {
+    await callDelete(setLoading, setIsConfirmingDelete, `${selectedItem?.id}`);
   };
   const setSearchFilter = (searchText: string) => {
     const url = `/pages/1?search=${encodeURIComponent(searchText)}`;
@@ -58,48 +61,50 @@ const Pages: NextPage<Props> = ({
     }
   ];
   const handleCreateNew = async () => {
-    console.log('NEW PAGE');
+    callCreateNew(setLoading);
   };
   const handlePublish = async () => {
-    console.log('PUBLISH');
+    callPublish(setLoading);
   };
   return (
     <Layout pageMeta={pageMeta}>
-      <div className={styles.pageRoot}>
-        <div className="container-xl">
-          <PageDataHeader
-            title="Pages"
-            setSearchFilter={setSearchFilter}
-            defaultSearchText={defaultSearchText}
-            handleCreateNew={handleCreateNew}
-            handlePublish={handlePublish}
-          />
-          <PageDataTable
-            items={pages}
-            slug="pages"
-            tableFields={tableFields}
-            tableActions={tableActions}
-            handleDelete={handleDelete}
-            viewPrefix=""
-          />
-          <PaginationNav
-            pageNum={pageNum}
-            itemsPerPage={itemsPerPage}
-            itemsLoaded={pages.length}
-            numItems={numItems}
-            path="/pages/"
-          />
+      <ProtectedByRole>
+        <div className={styles.pageRoot}>
+          <div className="container-xl">
+            <PageDataHeader
+              title="Pages"
+              setSearchFilter={setSearchFilter}
+              defaultSearchText={defaultSearchText}
+              handleCreateNew={handleCreateNew}
+              handlePublish={handlePublish}
+            />
+            <PageDataTable
+              items={pages}
+              slug="pages"
+              tableFields={tableFields}
+              tableActions={tableActions}
+              handleDelete={handleDelete}
+              viewPrefix=""
+            />
+            <PaginationNav
+              pageNum={pageNum}
+              itemsPerPage={itemsPerPage}
+              itemsLoaded={pages.length}
+              numItems={numItems}
+              path="/pages/"
+            />
+          </div>
+          {isConfirmingDelete && (
+            <ConfirmationModal
+              title="Delete Page"
+              handleCancel={handleDeleteCancel}
+              handleOk={handleDeleteOk}
+            >
+              <span>Are you sure you want to delete this item?</span>
+            </ConfirmationModal>
+          )}
         </div>
-        {isConfirmingDelete && (
-          <ConfirmationModal
-            title="Delete Page"
-            handleCancel={handleDeleteCancel}
-            handleOk={handleDeleteOk}
-          >
-            <span>Are you sure you want to delete this item?</span>
-          </ConfirmationModal>
-        )}
-      </div>
+      </ProtectedByRole>
     </Layout>
   );
 };

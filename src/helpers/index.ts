@@ -15,6 +15,8 @@ export const sanitizeEventValue = (e: React.ChangeEvent<HTMLInputElement>) => {
   return '';
 };
 
+export const getIsAdmin = (session: Session) => session?.user?.role === 'admin';
+
 export const getIsValidUserRole = (role: string): boolean =>
   !!role && roles.includes(role);
 

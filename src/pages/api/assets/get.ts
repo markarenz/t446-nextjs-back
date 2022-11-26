@@ -33,6 +33,7 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
       ) {
         let asset: Asset = {
           filename: '',
+          thumbnail: '',
           fileDate: '',
           size: '',
           url: ''
@@ -53,6 +54,7 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
         );
         asset.size = size + ' ' + sizeSuffix;
         asset.url = `${process.env.AWS__BASE_DIR}files/${asset.filename}`;
+        asset.thumbnail = `${process.env.AWS__BASE_DIR}files/thumbnails/${asset.filename}`;
         assets.push(asset);
       }
     });

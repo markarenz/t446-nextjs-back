@@ -18,7 +18,7 @@ const ImageSelectorItem: React.FC<Props> = ({
   handleSelection,
   handleAssetDelete
 }) => {
-  const { filename, url } = asset;
+  const { filename, thumbnail } = asset;
   const handleImageClick = (filename: string) => {
     if (allowSelection) {
       handleSelection(filename);
@@ -27,7 +27,7 @@ const ImageSelectorItem: React.FC<Props> = ({
   return (
     <div
       className={styles.root}
-      style={{ backgroundImage: `url(${url})` }}
+      style={{ backgroundImage: `url(${thumbnail})` }}
       onClick={() => handleImageClick(filename)}
     >
       <div className={styles.idx}>{idx}</div>

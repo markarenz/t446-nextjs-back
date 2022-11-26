@@ -6,7 +6,6 @@ import { publishGalleries } from '../../../utility/db/queries/galleries';
 // GALLERIES PUBLISH
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await unstable_getServerSession(req, res, authOptions);
-  let alert = null;
   if (!session) {
     return res.status(403);
   } else {

@@ -9,6 +9,10 @@ type Props = {
   tabIndex?: number;
   autoFocus: boolean;
   rows?: number;
+  maxLen?: number;
+};
+type OptionalInputProps = {
+  maxLength?: number;
 };
 const Input: React.FC<Props> = ({
   name,
@@ -18,7 +22,8 @@ const Input: React.FC<Props> = ({
   onEnterkey,
   tabIndex,
   autoFocus,
-  rows
+  rows,
+  maxLen
 }) => {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -27,6 +32,10 @@ const Input: React.FC<Props> = ({
       }
     }
   };
+  const optionalProps: OptionalInputProps = {};
+  if (maxLen) {
+    optionalProps.maxLength = maxLen;
+  }
   if (rows && rows > 1) {
     return (
       <textarea
@@ -37,6 +46,7 @@ const Input: React.FC<Props> = ({
         tabIndex={tabIndex}
         autoFocus={autoFocus}
         className={styles.textarea}
+        {...optionalProps}
       />
     );
   }
@@ -50,6 +60,7 @@ const Input: React.FC<Props> = ({
       autoFocus={autoFocus}
       onKeyDown={handleKeyDown}
       className={styles.input}
+      {...optionalProps}
     />
   );
 };

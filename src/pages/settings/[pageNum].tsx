@@ -10,6 +10,7 @@ import { useAppContext } from '../../context/AppContext';
 import PageDataHeader from '../../components/common/PageDataHeader';
 import { callCreateNew, callDelete, callPublish } from '../../helpers/settings';
 import { getItemsSettings } from '../../utility/db/queries/settings';
+import ProtectedByRole from '../../components/common/ProtectedByRole';
 import styles from '../../styles/modules/Dashboard.module.scss';
 
 type Props = {
@@ -63,41 +64,43 @@ const Settings: NextPage<Props> = ({
   ];
   return (
     <Layout pageMeta={pageMeta}>
-      <div className={styles.pageRoot}>
-        <div className="container-xl">
-          <PageDataHeader
-            title="Settings"
-            setSearchFilter={setSearchFilter}
-            defaultSearchText={defaultSearchText}
-            handleCreateNew={handleCreateNew}
-            handlePublish={handlePublish}
-          />
-          <PageDataTable
-            items={settings}
-            slug="settings"
-            tableFields={tableFields}
-            tableActions={tableActions}
-            handleDelete={handleDelete}
-            viewPrefix=""
-          />
-          <PaginationNav
-            pageNum={pageNum}
-            itemsPerPage={itemsPerPage}
-            itemsLoaded={settings.length}
-            numItems={numItems}
-            path="/settings/"
-          />
+      <ProtectedByRole>
+        <div className={styles.pageRoot}>
+          <div className="container-xl">
+            <PageDataHeader
+              title="Settings"
+              setSearchFilter={setSearchFilter}
+              defaultSearchText={defaultSearchText}
+              handleCreateNew={handleCreateNew}
+              handlePublish={handlePublish}
+            />
+            <PageDataTable
+              items={settings}
+              slug="settings"
+              tableFields={tableFields}
+              tableActions={tableActions}
+              handleDelete={handleDelete}
+              viewPrefix=""
+            />
+            <PaginationNav
+              pageNum={pageNum}
+              itemsPerPage={itemsPerPage}
+              itemsLoaded={settings.length}
+              numItems={numItems}
+              path="/settings/"
+            />
+          </div>
+          {isConfirmingDelete && (
+            <ConfirmationModal
+              title="Delete Setting"
+              handleCancel={handleDeleteCancel}
+              handleOk={() => handleDeleteOk()}
+            >
+              <span>Are you sure you want to delete this item?</span>
+            </ConfirmationModal>
+          )}
         </div>
-        {isConfirmingDelete && (
-          <ConfirmationModal
-            title="Delete Setting"
-            handleCancel={handleDeleteCancel}
-            handleOk={() => handleDeleteOk()}
-          >
-            <span>Are you sure you want to delete this item?</span>
-          </ConfirmationModal>
-        )}
-      </div>
+      </ProtectedByRole>
     </Layout>
   );
 };

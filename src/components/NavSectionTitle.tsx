@@ -1,4 +1,3 @@
-import styles from '../styles/modules/NavSectionTitle.module.scss';
 import Link from 'next/link';
 import {
   IconAlerts,
@@ -8,6 +7,7 @@ import {
   IconSettings,
   IconTools
 } from './img/icons';
+import styles from '../styles/modules/NavSectionTitle.module.scss';
 
 type Props = {
   navItem: {
@@ -20,6 +20,7 @@ type Props = {
 const NavSectionTitle: React.FC<Props> = ({ navItem }) => {
   return (
     <div className={styles.navSectionTitle}>
+      <div className={styles.navSectionBg} />
       <Link href={navItem.path} passHref>
         <div className={styles.titleWrap}>
           <div className={styles.iconWrap}>
