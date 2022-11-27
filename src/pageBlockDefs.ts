@@ -17,6 +17,7 @@ export type PageBlockItemFields = {
   headlines?: string;
   subheadline?: string;
   num_show?: string;
+  type: string;
   slug?: string;
   photo1?: string;
   photo2?: string;

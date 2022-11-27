@@ -43,7 +43,7 @@ const InputImagePicker: React.FC<Props> = ({
         onClick={handleOpenModal}
         style={{
           backgroundImage: `url(${baseImgUrl}thumbnails/${
-            value.length > 0 ? value : 'unknown.jpg'
+            value?.length > 0 ? value : 'unknown.jpg'
           })`
         }}
       ></div>

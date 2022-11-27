@@ -66,6 +66,7 @@ const InputPageBlocks: React.FC<Props> = ({
     const newBlocks = [...blocks];
     const newBlock = getDefaultBlockData(slug);
     newBlocks.splice(insertIndex, 0, newBlock);
+    console.log('>>>>', slug, blocks, newBlocks);
     setBlocks(newBlocks);
   };
   const updateBlocks = (idx: number, block: any) => {
@@ -94,7 +95,7 @@ const InputPageBlocks: React.FC<Props> = ({
       <InsertBtn idx={0} />
 
       {blocks.map((b, idx) => (
-        <React.Fragment key={`${b.slug}-${idx}`}>
+        <React.Fragment key={`${b.type}-${idx}`}>
           <InputPageBlockItem
             idx={idx}
             isLastBlock={idx === blocks.length - 1}

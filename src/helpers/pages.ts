@@ -131,7 +131,7 @@ export const getBlockDefByType = (slug: string) =>
 export const getDefaultBlockData = (slug: string) => {
   const pageBlock = pageBlocks.find((b) => b.slug === slug);
   const defaultObject: PageBlockItemFields = {
-    slug
+    type: slug
   };
   if (pageBlock) {
     pageBlock.fields.forEach((f) => {
