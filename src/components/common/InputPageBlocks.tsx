@@ -66,7 +66,6 @@ const InputPageBlocks: React.FC<Props> = ({
     const newBlocks = [...blocks];
     const newBlock = getDefaultBlockData(slug);
     newBlocks.splice(insertIndex, 0, newBlock);
-    console.log('>>>>', slug, blocks, newBlocks);
     setBlocks(newBlocks);
   };
   const updateBlocks = (idx: number, block: any) => {
@@ -78,6 +77,7 @@ const InputPageBlocks: React.FC<Props> = ({
   };
   useEffect(() => {
     onChange('content', JSON.stringify(blocks));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocks]);
   const InsertBtn: React.FC<InsertBtnProps> = ({ idx }) => (
     <div className="mb-1 text-center">

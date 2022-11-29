@@ -24,11 +24,11 @@ const Dashboard: NextPage = () => {
             </p>
             <h2>Markdown</h2>
             <p>
-              Markdown is a simple, lightweight markup language for text. It's
+              Markdown is a simple, lightweight markup language for text. It is
               highly readable and easy to use. We use this for many of the
-              textboxes in galleries, alerts, and pages. If you see an "eye"
-              icon on a textbox, it uses markdown. click on the eye to preview
-              how the text will be formatted.
+              textboxes in galleries, alerts, and pages. If you see an
+              &quot;eye&quot; icon on a textbox, it uses markdown. click on the
+              eye to preview how the text will be formatted.
             </p>
             <p>
               For more information on Markdown, check out this{' '}
@@ -40,12 +40,12 @@ const Dashboard: NextPage = () => {
               >
                 cheat sheet
               </a>
-              . There are only a few items you'll use regularly: headlines,
-              bold, italics, bullet lists, and links.
+              . There are only a few items you&lsquo;ll use regularly:
+              headlines, bold, italics, bullet lists, and links.
             </p>
             <p>
-              For a headline (h2, h3, etc.) add a few #'s at the start of a
-              line. For example: <code>## This is a Headline</code>
+              For a headline (h2, h3, etc.) add a few #&lsquo;s at the start of
+              a line. For example: <code>## This is a Headline</code>
             </p>
             <p>
               For bold, wrap the text in two asterisks like this:{' '}

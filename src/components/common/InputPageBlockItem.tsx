@@ -50,6 +50,7 @@ const InputPageBlockItem: React.FC<Props> = ({
   };
   const debouncedUpdateBlocks = useMemo(
     () => debounce(callUpdateBlocks, 300),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [localData]
   );
   const handleToggleShowIdClass = () => {
@@ -69,6 +70,7 @@ const InputPageBlockItem: React.FC<Props> = ({
   };
   useEffect(() => {
     debouncedUpdateBlocks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localData]);
 
   return (
