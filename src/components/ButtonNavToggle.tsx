@@ -15,6 +15,7 @@ const ButtonNavToggle = () => {
   };
   return (
     <button
+      data-testid="btn-nav-toggle"
       type="button"
       onClick={handleToggleSidebar}
       className={styles.buttonNavToggle}

@@ -17,7 +17,7 @@ const initialState: ContextValue = {
   setSidebarOpen: () => {}
 };
 
-const AppContext = createContext(initialState);
+export const AppContext = createContext(initialState);
 
 type Props = {
   children: JSX.Element;
