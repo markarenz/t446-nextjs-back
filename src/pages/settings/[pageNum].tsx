@@ -60,6 +60,10 @@ const Settings: NextPage<Props> = ({
     {
       title: 'Title',
       slug: 'title'
+    },
+    {
+      title: 'Modified',
+      slug: 'dateModified'
     }
   ];
   return (

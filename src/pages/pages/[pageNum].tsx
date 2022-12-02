@@ -56,6 +56,10 @@ const Pages: NextPage<Props> = ({
       slug: 'title'
     },
     {
+      title: 'Modified',
+      slug: 'dateModified'
+    },
+    {
       title: 'Status',
       slug: 'status'
     }

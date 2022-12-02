@@ -43,7 +43,7 @@ export const getItemsSettings = async (
         mode: 'insensitive'
       }
     },
-    orderBy: [{ title: 'asc' }],
+    orderBy: [{ dateModified: 'desc' }],
     skip,
     take: itemsPerPage
   });

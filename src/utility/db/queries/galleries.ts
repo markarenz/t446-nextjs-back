@@ -46,7 +46,7 @@ export const getItemsGalleries = async (
         mode: 'insensitive'
       }
     },
-    orderBy: [{ title: 'asc' }],
+    orderBy: [{ dateModified: 'desc' }],
     skip,
     take: itemsPerPage
   });

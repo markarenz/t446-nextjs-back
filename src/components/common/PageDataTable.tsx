@@ -39,18 +39,27 @@ const PageDataTable: React.FC<Props> = ({
       <tbody>
         {items?.map((i) => (
           <tr key={`${i.id}`}>
-            <td>
-              <label>Title:</label>
-              <Link href={`edit/${i.id}`}>{i.title}</Link>
-            </td>
-            {/* @ts-ignore */}
-            {i?.status && (
+            {tableFields.some((f) => f.title === 'Title') && (
+              <td>
+                <label>Title:</label>
+                <Link href={`edit/${i.id}`}>{i.title}</Link>
+              </td>
+            )}
+            {tableFields.some((f) => f.title === 'Modified') && (
+              <td>
+                <label>Modified:</label>
+                <span>{new Date(i.dateModified).toLocaleString()}</span>
+              </td>
+            )}
+
+            {tableFields.some((f) => f.title === 'Status') && (
               <td>
                 <label>Status:</label>
                 {/* @ts-ignore */}
-                {i.status.toUpperCase()}
+                <span>{i.status.toUpperCase()}</span>
               </td>
             )}
+
             <td className="right">
               {tableActions.includes('edit') && (
                 <span className="mr-1">

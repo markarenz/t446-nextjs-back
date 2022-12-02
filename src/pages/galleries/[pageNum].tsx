@@ -36,7 +36,7 @@ const Galleries: NextPage<Props> = ({
   const { setLoading } = useAppContext();
   const pageMeta = {
     title: 'Galleries',
-    metedesc: 'This page holds a list of alerts for the T446 website.'
+    metedesc: 'This page holds a list of galleries for the T446 website.'
   };
 
   const handleDelete = (gallery: Gallery): void => {
@@ -67,6 +67,10 @@ const Galleries: NextPage<Props> = ({
       slug: 'title'
     },
     {
+      title: 'Modified',
+      slug: 'dateModified'
+    },
+    {
       title: 'Status',
       slug: 'status'
     }
@@ -95,12 +99,12 @@ const Galleries: NextPage<Props> = ({
             itemsPerPage={itemsPerPage}
             itemsLoaded={galleries.length}
             numItems={numItems}
-            path="/alerts/"
+            path="/galleries/"
           />
         </div>
         {isConfirmingDelete && (
           <ConfirmationModal
-            title="Delete Alert"
+            title="Delete Gallery"
             handleCancel={handleDeleteCancel}
             handleOk={handleDeleteOk}
           >

@@ -48,7 +48,7 @@ export const getItemsAlerts = async (
         mode: 'insensitive'
       }
     },
-    orderBy: [{ title: 'asc' }],
+    orderBy: [{ dateModified: 'desc' }],
     skip,
     take: itemsPerPage
   });
