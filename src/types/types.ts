@@ -63,6 +63,14 @@ export type AlertFormData = {
   dateEnd: Date;
 };
 
+export type PageFormData = {
+  title: string;
+  slug: string;
+  status: string;
+  metadesc: string;
+  content: string;
+};
+
 export type GalleryFormData = {
   title: string;
   slug: string;
@@ -83,4 +91,10 @@ export type Asset = {
   fileDate: string;
   size: string;
   url: string;
+  thumbnail: string;
+};
+
+export type SelectOption = {
+  label: string;
+  value: string | number;
 };

@@ -16,7 +16,7 @@ import { callGetFileList } from '../../../helpers/assets';
 import styles from '../../../styles/modules/editingForms.module.scss';
 import { statusOptions } from '../../../constants';
 import { sanitizeEventValue } from '../../../helpers';
-import { validateFormGallery } from '../../../helpers/galleries';
+import { validateFormGallery, callUpdate } from '../../../helpers/galleries';
 import { Asset } from '../../../types/types';
 
 type Props = {
@@ -52,17 +52,8 @@ const GalleryEdit: NextPage<Props> = ({ gallery, baseImgUrl }) => {
     metedesc: 'Editing gallery for T446 website.'
   };
   const { setLoading } = useAppContext();
-  const handleSave = async () => {
-    setLoading(true);
-    const body = {
-      id: gallery?.id,
-      formData
-    };
-    await fetch('/api/galleries/update', {
-      method: 'POST',
-      body: JSON.stringify(body)
-    });
-    setLoading(false);
+  const handleSave = () => {
+    callUpdate(setLoading, `${gallery?.id}`, formData);
   };
   const handleExit = () => {
     const url = `/galleries/1`;
@@ -123,6 +114,7 @@ const GalleryEdit: NextPage<Props> = ({ gallery, baseImgUrl }) => {
                     <label>Publish Date</label>
                     <DatePicker
                       name="pubDate"
+                      tabIndex={3}
                       selected={new Date(formData.pubDate)}
                       onChange={(date: Date) =>
                         handleValueChange('pubDate', date)
@@ -134,7 +126,7 @@ const GalleryEdit: NextPage<Props> = ({ gallery, baseImgUrl }) => {
                     <InputMarkdown
                       value={formData.content}
                       name="content"
-                      tabIndex={1}
+                      tabIndex={4}
                       rows={5}
                       onChange={hanleInputChange}
                     />

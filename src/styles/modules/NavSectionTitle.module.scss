@@ -1,39 +1,52 @@
 .navSectionTitle {
+  position:relative;
   font-family: var(--font-headline);
   font-size: 1.75rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  color: var(--colors-gray-light);
   transition:0.2s color ease-in-out;
+  .navSectionBg{
+    display:block;
+    position:absolute;
+    background-color: var(--colors-primary);
+    height:100%;
+    width:0;
+    left:0;
+    top:0;
+    opacity:0;
+    transition: 0.2s all ease-in-out;
+  }
+  .titleWrap{
+    position: relative;
+    padding: 1rem;
+  }
+  .iconWrap{
+    width:1.5rem;
+    height:1.5rem;
+    display:inline-block;
+    margin-right:0.5rem;
+    svg {
+      path {
+        fill: var(--colors-gray-light);
+      }
+    }
+  }
+
   &:hover{
     color: white;
+    .iconWrap{
+      svg {
+        path {
+          fill: white;
+        }
+      }  
+    }
+    .navSectionBg{
+      width:100%;
+      opacity:100;
+    }
   }
 }
 
-.chevron{
-  width: 2rem;
-  height:2rem;
-  transform: rotate(0deg);
-  transition: 0.2s transform ease-in-out;
-  svg path {
-    transition: 0.2s fill ease-in-out;
-    fill: var(--colors-gray-300);
-  }
-  &.active{
-    transform: rotate(90deg);
-    svg path {
-      fill: var(--colors-primary-focus);
-    }
-  }
-}
-.iconWrap{
-  width:1.5rem;
-  height:1.5rem;
-  display:inline-block;
-  margin-right:0.5rem;
-  svg {
-    path {
-      fill: var(--colors-gray-lightest);
-    }
-  }
-}

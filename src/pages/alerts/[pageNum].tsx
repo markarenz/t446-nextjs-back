@@ -10,6 +10,7 @@ import { useAppContext } from '../../context/AppContext';
 import PageDataHeader from '../../components/common/PageDataHeader';
 import { callCreateNew, callDelete, callPublish } from '../../helpers/alerts';
 import { getItemsAlerts } from '../../utility/db/queries/alerts';
+import ProtectedByRole from '../../components/common/ProtectedByRole';
 import styles from '../../styles/modules/Dashboard.module.scss';
 
 type Props = {
@@ -67,41 +68,43 @@ const Alerts: NextPage<Props> = ({
   ];
   return (
     <Layout pageMeta={pageMeta}>
-      <div className={styles.pageRoot}>
-        <div className="container-xl">
-          <PageDataHeader
-            title="Alerts"
-            setSearchFilter={setSearchFilter}
-            defaultSearchText={defaultSearchText}
-            handleCreateNew={handleCreateNew}
-            handlePublish={handlePublish}
-          />
-          <PageDataTable
-            items={alerts}
-            slug="alerts"
-            tableFields={tableFields}
-            tableActions={tableActions}
-            handleDelete={handleDelete}
-            viewPrefix=""
-          />
-          <PaginationNav
-            pageNum={pageNum}
-            itemsPerPage={itemsPerPage}
-            itemsLoaded={alerts.length}
-            numItems={numItems}
-            path="/alerts/"
-          />
+      <ProtectedByRole>
+        <div className={styles.pageRoot}>
+          <div className="container-xl">
+            <PageDataHeader
+              title="Alerts"
+              setSearchFilter={setSearchFilter}
+              defaultSearchText={defaultSearchText}
+              handleCreateNew={handleCreateNew}
+              handlePublish={handlePublish}
+            />
+            <PageDataTable
+              items={alerts}
+              slug="alerts"
+              tableFields={tableFields}
+              tableActions={tableActions}
+              handleDelete={handleDelete}
+              viewPrefix=""
+            />
+            <PaginationNav
+              pageNum={pageNum}
+              itemsPerPage={itemsPerPage}
+              itemsLoaded={alerts.length}
+              numItems={numItems}
+              path="/alerts/"
+            />
+          </div>
+          {isConfirmingDelete && (
+            <ConfirmationModal
+              title="Delete Alert"
+              handleCancel={handleDeleteCancel}
+              handleOk={() => handleDeleteOk()}
+            >
+              <span>Are you sure you want to delete this item?</span>
+            </ConfirmationModal>
+          )}
         </div>
-        {isConfirmingDelete && (
-          <ConfirmationModal
-            title="Delete Alert"
-            handleCancel={handleDeleteCancel}
-            handleOk={() => handleDeleteOk()}
-          >
-            <span>Are you sure you want to delete this item?</span>
-          </ConfirmationModal>
-        )}
-      </div>
+      </ProtectedByRole>
     </Layout>
   );
 };

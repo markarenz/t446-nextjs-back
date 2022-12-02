@@ -70,10 +70,11 @@ const ImageUploader: React.FC<Props> = ({ handleTriggerRefresh }) => {
   };
   const isFormValid = images.some((i) => !i.uploading);
   return (
-    <div className={styles.uploader}>
+    <div className={styles.uploader} data-testid="image-uploader">
       <form encType="multipart/form-data" action="">
         <div className={styles.uploaderStage}>
           <input
+            data-testid="file-upload-input"
             type="file"
             name="myImage"
             multiple
@@ -84,6 +85,7 @@ const ImageUploader: React.FC<Props> = ({ handleTriggerRefresh }) => {
           <div className={styles.messaging}>
             <h3>Drop images here or click to select.</h3>
             <Button
+              testId="btn-upload"
               onClick={uploadToServer}
               disabled={!isFormValid}
               color="primary"
@@ -94,8 +96,9 @@ const ImageUploader: React.FC<Props> = ({ handleTriggerRefresh }) => {
         </div>
       </form>
       <div className={styles.previews}>
-        {images.map((imgObj) => (
+        {images.map((imgObj, idx) => (
           <div
+            data-testid={`btn-upload-staged-${idx}`}
             key={imgObj.img.name}
             className={styles.preview}
             style={{ backgroundImage: `url(${imgObj.srcUrl})` }}
@@ -115,6 +118,7 @@ const ImageUploader: React.FC<Props> = ({ handleTriggerRefresh }) => {
               }`}
             >
               <IconButton
+                testId={`btn-upload-remove-${idx}`}
                 title="Delete"
                 color="primary"
                 onClick={() => handleRemoveImage(imgObj.img.name)}

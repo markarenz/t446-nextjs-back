@@ -11,22 +11,25 @@ type Props = {
   tabIndex: number;
   rows: number;
   onChange: Function;
+  testId?: string;
 };
 const InputMarkdown: React.FC<Props> = ({
   value,
   name,
   tabIndex,
   rows,
-  onChange
+  onChange,
+  testId
 }) => {
   const [isPreviewing, setIsPreviewing] = useState(false);
   const handleTogglePreview = () => {
     setIsPreviewing((prevState) => !prevState);
   };
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-testid={testId}>
       <div className={styles.modeToggleWrapper}>
         <IconButton
+          testId="input-markdown-toggle-preview"
           title="toggle preview"
           onClick={handleTogglePreview}
           color={isPreviewing ? 'primary' : 'default'}
@@ -47,7 +50,7 @@ const InputMarkdown: React.FC<Props> = ({
           />
         </div>
         {isPreviewing && (
-          <div className="col-6">
+          <div className="col-6" data-testid="input-markdown-preview">
             <div className={styles.previewWrap}>
               <ReactMarkdown skipHtml>{value}</ReactMarkdown>
             </div>

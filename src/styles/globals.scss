@@ -147,6 +147,17 @@ img.framed {
   display:flex;
 }
 
+code{
+  background: rgba(0,0,0,0.5);
+  padding:0 0.5rem;
+}
+.flex-space-between{
+  display:flex!important;
+  justify-content: space-between;
+  align-items: center;
+  width:100%;
+}
+
 .center-wrap {
   display:flex;
   justify-content: center;

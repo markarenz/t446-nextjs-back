@@ -8,6 +8,7 @@ type Props = {
   onClick?: Function;
   disabled: boolean;
   tabIndex?: number;
+  testId?: string;
 };
 
 const Button: React.FC<Props> = ({
@@ -17,7 +18,8 @@ const Button: React.FC<Props> = ({
   size,
   onClick,
   disabled,
-  tabIndex
+  tabIndex,
+  testId
 }) => {
   const classSize = size === 'small' ? styles.small : '';
   const classVariant =
@@ -29,9 +31,11 @@ const Button: React.FC<Props> = ({
   return (
     <button
       onClick={!!onClick ? (e) => onClick(e) : () => {}}
+      role="button"
       type="button"
       tabIndex={tabIndex}
       disabled={disabled}
+      data-testid={testId}
       className={`${styles.button} ${classSize} ${classVariant} ${classColor}`}
     >
       {children}

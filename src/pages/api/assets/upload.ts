@@ -68,6 +68,29 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
     });
 
     sharp(img.filepath)
+      .resize(250, 250)
+      .toBuffer()
+      .then((resizedImg) => {
+        const params = {
+          Bucket: process.env.AWS__BUCKET_NAME,
+          Key: `files/thumbnails/${filename}`,
+          Body: resizedImg,
+          ACL: 'public-read'
+        };
+        // @ts-ignore
+        s3.upload(params, function (err) {
+          if (err) {
+            console.error(err);
+          }
+          console.log(
+            'Image uploaded successfully.',
+            `${process.env.AWS__BASE_DIR}files/${filename}`
+          );
+          // Thumbnail complete
+        });
+      });
+
+    sharp(img.filepath)
       .resize(resizeConfig) //{width: 1920, height: 1080}
       .toBuffer()
       .then((resizedImg) => {

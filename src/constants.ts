@@ -4,7 +4,7 @@ export const navItems = [
   {
     title: 'Alerts',
     id: 0,
-    roles: ['admin', 'historian'],
+    roles: ['admin'],
     path: '/alerts/1'
   },
   {
@@ -27,13 +27,13 @@ export const navItems = [
   },
   {
     title: 'Settings',
-    id: 3,
+    id: 4,
     roles: ['admin'],
     path: '/settings/1'
   },
   {
     title: 'Tools',
-    id: 4,
+    id: 5,
     roles: ['admin'],
     path: '/tools'
   }

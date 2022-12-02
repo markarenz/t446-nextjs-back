@@ -10,7 +10,9 @@ const Header = () => {
   const userRole = getRoleFromSession(session);
   const { isSidebarOpen, setSidebarOpen } = useAppContext();
   const handleLogout = () => {
-    signOut();
+    signOut({
+      callbackUrl: `${window.location.origin}`
+    });
   };
   return (
     <header className={styles.header}>
@@ -23,7 +25,6 @@ const Header = () => {
           <span>LOG OUT</span>
         </Button>
       </div>
-      {/* <button onClick={() => signOut()}>SIGN OUT</button> */}
     </header>
   );
 };

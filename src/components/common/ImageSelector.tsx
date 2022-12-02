@@ -51,10 +51,11 @@ const ImageSelector: React.FC<Props> = ({
     handleTriggerRefresh();
   };
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-testid="image-selector">
       <div className={styles.controlsWrap}>
         <div className={styles.search}>
           <Input
+            testId="asset-search"
             type="search"
             value={searchInput}
             onChange={handleSearchChange}
@@ -64,6 +65,7 @@ const ImageSelector: React.FC<Props> = ({
         </div>
         <div className="mr-1">
           <IconButton
+            testId="asset-search-btn"
             title="Search"
             onClick={handleUpdateSearch}
             color="default"
@@ -79,15 +81,16 @@ const ImageSelector: React.FC<Props> = ({
           <IconRefresh />
         </IconButton>
       </div>
-      <div className={styles.listStage}>
+      <div className={styles.listStage} data-testid="asset-list-stage">
         {paginatedAssets.map((a, idx) => (
           <ImageSelectorItem
+            testId={`asset-item-${idx}`}
             key={`${a.filename}`}
             idx={idx + startItem + 1}
             asset={a}
             allowSelection={allowSelection}
-            handleSelection={() =>
-              !!handleSelection ? handleSelection(a.filename) : null
+            handleSelection={
+              handleSelection ? () => handleSelection(a.filename) : () => {}
             }
             handleAssetDelete={() => handleAssetDelete(a.filename)}
           />
@@ -95,6 +98,7 @@ const ImageSelector: React.FC<Props> = ({
       </div>
       <div className={styles.pagination}>
         <button
+          data-testid="btn-pagenav-prev"
           onClick={() => assetPageNav(-1)}
           disabled={resultsPage < 1}
           className={styles.navBtn}
@@ -105,6 +109,7 @@ const ImageSelector: React.FC<Props> = ({
           {startItem + 1} - {endItem} of {totalItems}
         </span>
         <button
+          data-testid="btn-pagenav-next"
           onClick={() => assetPageNav(1)}
           disabled={totalItems <= endItem}
           className={styles.navBtn}

@@ -6,7 +6,11 @@ type Props = {
 };
 
 const Grid: React.FC<Props> = ({ children, columns }) => {
-  return <div className={styles.root}>{children}</div>;
+  return (
+    <div className={styles.root} data-testid="grid-wrap">
+      {children}
+    </div>
+  );
 };
 
 export default Grid;

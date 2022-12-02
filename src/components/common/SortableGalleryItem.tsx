@@ -13,7 +13,7 @@ export type ItemProps = HTMLAttributes<HTMLDivElement> & {
 const Item = forwardRef<HTMLDivElement, ItemProps>(
   ({ id, withOpacity, isDragging, style, baseImgUrl, ...props }, ref) => {
     const inlineStyles: CSSProperties = {
-      backgroundImage: `url(${baseImgUrl}${id})`,
+      backgroundImage: `url(${baseImgUrl}thumbnails/${id})`,
       ...style
     };
     return (

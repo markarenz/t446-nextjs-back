@@ -11,6 +11,10 @@
   border-radius: 100%;
   cursor:pointer;
   border:none;
+  &:disabled{
+    opacity:0.3;
+    pointer-events: none;
+  }
   .inner{
     display: flex;
     align-items: center;

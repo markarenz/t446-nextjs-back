@@ -1,0 +1,56 @@
+.modalRoot {
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  background-color: var(--colors-modal-bg);
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  z-index:10;
+  .blockIcons{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width:1024px;
+    margin:0 auto;
+  }
+  .blockTypeBtn{
+    margin-right:1rem;
+    margin-bottom:1rem;
+    background-color: transparent;
+    border:none;
+    cursor:pointer;
+    transform:scale(1.0);
+    transition: 0.2s all ease-in-out;
+    &:hover{
+      transform:scale(1.1);
+    }
+    &.active{
+      background-color: var(--colors-secondary);
+    }
+    background-color: transparent;
+    border-radius:6px;
+    .iconWrap{
+      width:4rem;
+      padding:0.5rem;
+      margin:0 auto;
+    }
+    svg{
+      circle,
+      ellipse,
+      rect,
+      path {
+        fill: var(--colors-gray-lightest)
+      }
+    }
+  }
+  .label{
+    font-size:0.75rem;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    max-width:7rem;
+    padding:0 0.5rem 0.5rem 0.5rem;
+  }
+}

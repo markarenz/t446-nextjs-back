@@ -14,3 +14,6 @@ export { default as IconSearch } from './IconSearch';
 export { default as IconClose } from './IconClose';
 export { default as IconRefresh } from './IconRefresh';
 export { default as IconSettings } from './IconSettings';
+export { default as IconUp } from './IconUp';
+export { default as IconDown } from './IconDown';
+export { default as IconInfo } from './IconInfo';

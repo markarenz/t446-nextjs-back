@@ -1,14 +1,14 @@
-import prisma from '../../../../lib/prismadb';
 import { unstable_getServerSession } from 'next-auth/next';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { authOptions } from '../auth/[...nextauth]';
+import { getIsAdmin } from '../../../helpers';
 import { validateFormAlert } from '../../../helpers/alerts';
 import { updateAlert } from '../../../utility/db/queries/alerts';
 
 // ALERT UPDATE
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await unstable_getServerSession(req, res, authOptions);
-  if (!session) {
+  if (!session || !getIsAdmin(session)) {
     res.status(403);
   } else {
     let success = false;
