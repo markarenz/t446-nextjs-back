@@ -20,7 +20,7 @@ const PaginationNav: React.FC<Props> = ({
   const lastItem = firstItem + itemsLoaded - 1;
   const moreItems = lastItem + 1 <= numItems;
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-testid="pagination-nav">
       <span className={styles.navBtnWrapper}>
         {pageNum > 1 && (
           <Link href={`${path}${pageNum - 1}`} passHref>

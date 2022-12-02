@@ -23,7 +23,6 @@ export const callDeleteAsset = async (
   filename: string
 ) => {
   setLoading(true);
-  console.log('CALLING DELETE', filename);
   const response = await fetch('/api/assets/delete', {
     method: 'POST',
     body: JSON.stringify({

@@ -7,7 +7,10 @@ type Props = {
 };
 const Loader: React.FC<Props> = ({ show }) => {
   return (
-    <div className={`${styles.loader} ${show && styles.active}`}>
+    <div
+      className={`${styles.loader} ${show && styles.active}`}
+      data-testid="loader"
+    >
       <div className={styles.loaderImg}>
         <div className={`${styles.logo} ${show ? styles.animating : ''}`}>
           <LogoBsa />

@@ -6,13 +6,15 @@ type Props = {
   title: string;
   color?: string;
   disabled?: boolean;
+  testId?: string;
 };
 const IconButton: React.FC<Props> = ({
   children,
   onClick,
   title,
   color,
-  disabled
+  disabled,
+  testId
 }) => {
   let classColor = styles.default;
   if (color === 'secondary') {
@@ -27,6 +29,7 @@ const IconButton: React.FC<Props> = ({
   }
   return (
     <button
+      data-testid={testId}
       type="button"
       title={title}
       onClick={() => onClick()}

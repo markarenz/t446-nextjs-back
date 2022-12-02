@@ -10,7 +10,7 @@ const ProtectedByRole: React.FC<Props> = ({ children }) => {
   return isAuthorized ? (
     children
   ) : (
-    <div>
+    <div data-testid="unauthorized">
       <h2>You are not authorized for this page.</h2>
     </div>
   );

@@ -6,10 +6,18 @@ type Props = {
   value: string;
   onChange: Function;
   options: SelectOption[];
+  testId?: string;
 };
-const InputDropdown: React.FC<Props> = ({ name, value, onChange, options }) => {
+const InputDropdown: React.FC<Props> = ({
+  name,
+  value,
+  onChange,
+  options,
+  testId
+}) => {
   return (
     <select
+      data-testid={testId}
       name={name}
       value={value}
       onChange={(e) => onChange(e)}

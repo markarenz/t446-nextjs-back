@@ -9,6 +9,7 @@ type Props = {
     label: string;
     value: string;
   }[];
+  testId?: string;
 };
 
 const Switch: React.FC<Props> = ({
@@ -16,7 +17,8 @@ const Switch: React.FC<Props> = ({
   tabIndex,
   value,
   onChange,
-  options
+  options,
+  testId
 }) => {
   const handleClick = () => {
     const newVal = value === 'inactive' ? 'active' : 'inactive';
@@ -28,9 +30,10 @@ const Switch: React.FC<Props> = ({
   const [optionA, optionB] = options;
   const isOptionB = value === optionB.value;
   return (
-    <div className={styles.switchRoot}>
+    <div className={styles.switchRoot} data-testid={testId}>
       <span className={styles.optionLabel}>{optionA.label}</span>
       <button
+        data-testid={`${testId}-button`}
         type="button"
         onClick={handleClick}
         tabIndex={tabIndex}

@@ -10,29 +10,35 @@ type Props = {
   allowSelection: boolean;
   handleSelection: Function;
   handleAssetDelete: Function;
+  testId?: string;
 };
 const ImageSelectorItem: React.FC<Props> = ({
   idx,
   asset,
   allowSelection,
   handleSelection,
-  handleAssetDelete
+  handleAssetDelete,
+  testId
 }) => {
   const { filename, thumbnail } = asset;
   const handleImageClick = (filename: string) => {
-    if (allowSelection) {
-      handleSelection(filename);
-    }
+    handleSelection(filename);
   };
   return (
     <div
+      data-testid={testId}
       className={styles.root}
       style={{ backgroundImage: `url(${thumbnail})` }}
       onClick={() => handleImageClick(filename)}
     >
       <div className={styles.idx}>{idx}</div>
       <div className={styles.btnDeleteWrap}>
-        <IconButton title="delete" onClick={handleAssetDelete} color="primary">
+        <IconButton
+          title="delete"
+          onClick={handleAssetDelete}
+          color="primary"
+          testId={`${testId}-delete`}
+        >
           <IconDelete />
         </IconButton>
       </div>

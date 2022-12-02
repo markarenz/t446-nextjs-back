@@ -23,9 +23,6 @@ const InputImagePicker: React.FC<Props> = ({
   handleTriggerRefresh
 }) => {
   const [isPickingImage, setIsPickingImage] = useState(false);
-  const handleImageSelection = (filename: string) => {
-    onChange(name, filename);
-  };
   const handleCloseModal = () => {
     setIsPickingImage(false);
   };
@@ -37,8 +34,9 @@ const InputImagePicker: React.FC<Props> = ({
     handleCloseModal();
   };
   return (
-    <div>
+    <div data-testid="input-image-picker">
       <div
+        data-testid="input-image-picker-opener"
         className={styles.item}
         onClick={handleOpenModal}
         style={{
@@ -48,7 +46,7 @@ const InputImagePicker: React.FC<Props> = ({
         }}
       ></div>
       {isPickingImage && (
-        <div className={styles.modalWrap}>
+        <div className={styles.modalWrap} data-testid="image-picker-modal">
           <div className={styles.pickerModalWrap}>
             <IconButton title="close" onClick={handleCloseModal}>
               <IconClose />
