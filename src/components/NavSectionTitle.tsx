@@ -19,7 +19,10 @@ type Props = {
 
 const NavSectionTitle: React.FC<Props> = ({ navItem }) => {
   return (
-    <div className={styles.navSectionTitle}>
+    <div
+      className={styles.navSectionTitle}
+      data-testid={`navLink-${navItem.id}`}
+    >
       <div className={styles.navSectionBg} />
       <Link href={navItem.path} passHref>
         <div className={styles.titleWrap}>

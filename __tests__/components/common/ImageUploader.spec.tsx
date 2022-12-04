@@ -25,10 +25,12 @@ global.fetch = jest
 
 let file: File;
 let file2: File;
+let file3: File;
 
 beforeEach(() => {
   file = new File(['foo-bar'], 'foobar.png', { type: 'image/png' });
   file2 = new File(['foo2-bar2'], 'foobar2.png', { type: 'image/png' });
+  file3 = new File(['foo-bar'], 'foobar.png', { type: 'image/png' });
   global.URL.createObjectURL = jest.fn();
 });
 
@@ -95,7 +97,6 @@ describe('ImageUploader', () => {
         timeout: 2000
       }
     );
-
     const btnUpload = await screen.findByTestId('btn-upload');
     await act(async () => {
       await waitFor(() =>
@@ -109,5 +110,24 @@ describe('ImageUploader', () => {
       );
     });
     expect(global.fetch).toHaveBeenCalled();
+  });
+
+  it('allows only one file per filename', async () => {
+    render(<ImageUploader {...defaultProps} />);
+
+    const uploader = await screen.findByTestId('file-upload-input');
+    await waitFor(() =>
+      fireEvent.change(uploader, {
+        target: { files: [file, file2] }
+      })
+    );
+    expect(screen.queryByTestId('btn-upload-staged-0')).toBeInTheDocument();
+    expect(screen.queryByTestId('btn-upload-staged-1')).toBeInTheDocument();
+    await waitFor(() =>
+      fireEvent.change(uploader, {
+        target: { files: [file3] }
+      })
+    );
+    expect(screen.queryByTestId('btn-upload-staged-2')).not.toBeInTheDocument();
   });
 });

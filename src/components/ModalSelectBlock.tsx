@@ -36,7 +36,7 @@ const ModalSelectBlock: React.FC<Props> = ({ handleCancel, handleOk }) => {
   };
   const isFormValid = selectedBlockType !== '';
   return (
-    <div className={styles.modalRoot}>
+    <div className={styles.modalRoot} data-testid="modal-select-block">
       <div className="card">
         <div className="card-header">
           {!isFormValid ? (
@@ -50,6 +50,7 @@ const ModalSelectBlock: React.FC<Props> = ({ handleCancel, handleOk }) => {
             {pageBlocks.map((b, idx) => (
               <button
                 key={b.slug}
+                data-testid={`btn-block-type-${b.slug}`}
                 onClick={() => handleBlockTypeClick(b.slug, b.title)}
                 className={`${styles.blockTypeBtn} ${
                   b.slug === selectedBlockType ? styles.active : ''
@@ -83,6 +84,7 @@ const ModalSelectBlock: React.FC<Props> = ({ handleCancel, handleOk }) => {
           <span className="mr-1">
             <Button
               disabled={false}
+              testId="modal-select-block-cancel"
               variant="outlined"
               onClick={handleCancel}
               tabIndex={1}
@@ -93,9 +95,10 @@ const ModalSelectBlock: React.FC<Props> = ({ handleCancel, handleOk }) => {
           <span>
             <Button
               disabled={!isFormValid}
+              testId="modal-select-block-ok"
               variant="contained"
               color="primary"
-              onClick={() => handleOk(selectedBlockType)}
+              onClick={handleOk}
               tabIndex={2}
             >
               <span>OK</span>

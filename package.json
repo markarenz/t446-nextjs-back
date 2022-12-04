@@ -9,6 +9,7 @@
     "start": "next start",
     "postinstall": "prisma generate",
     "test": "jest --watch --coverage",
+    "test:coverage": "jest --coverage",
     "lint": "next lint"
   },
   "dependencies": {

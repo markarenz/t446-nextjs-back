@@ -32,11 +32,12 @@ const PageDataHeader: React.FC<Props> = ({
     setSearchFilter(searchText);
   };
   return (
-    <div className={styles.pageDataHeader}>
+    <div className={styles.pageDataHeader} data-testid="page-data-header">
       <h2 className="pageTitle">{title}</h2>
       <div className={styles.controlWrap}>
         <span className="mr-1">
           <Input
+            testId="page-header-search-input"
             type="search"
             onChange={handleSearchChange}
             autoFocus={false}
@@ -46,6 +47,7 @@ const PageDataHeader: React.FC<Props> = ({
         </span>
         <span className="mr-1">
           <IconButton
+            testId="page-header-search-btn"
             onClick={() => handleSearchClick()}
             title="New Item"
             color="default"

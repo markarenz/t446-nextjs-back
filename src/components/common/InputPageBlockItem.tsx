@@ -72,9 +72,8 @@ const InputPageBlockItem: React.FC<Props> = ({
     debouncedUpdateBlocks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localData]);
-
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-testid={`input-page-block-item-${idx}`}>
       <h3 className={styles.title}>
         {blockDef?.title || ''}
         <div>
@@ -84,6 +83,7 @@ const InputPageBlockItem: React.FC<Props> = ({
               disabled={false}
               onClick={handleToggleShowIdClass}
               color="secondary"
+              testId="block-btn-info"
             >
               <IconInfo />
             </IconButton>
@@ -94,6 +94,7 @@ const InputPageBlockItem: React.FC<Props> = ({
               disabled={idx < 1}
               onClick={moveUp}
               color="default"
+              testId="block-btn-move-up"
             >
               <IconUp />
             </IconButton>
@@ -104,18 +105,24 @@ const InputPageBlockItem: React.FC<Props> = ({
               disabled={isLastBlock}
               onClick={moveDown}
               color="default"
+              testId="block-btn-move-down"
             >
               <IconDown />
             </IconButton>
           </span>
-          <IconButton title="Remove" onClick={removeThisBlock} color="primary">
+          <IconButton
+            title="Remove"
+            onClick={removeThisBlock}
+            color="primary"
+            testId="block-btn-remove"
+          >
             <IconClose />
           </IconButton>
         </div>
       </h3>
       <div className="grid">
         {showIdClass && (
-          <div className="col-6">
+          <div className="col-6" data-testid="page-block-info">
             <label>ID</label>
             <Input
               type="text"
@@ -146,6 +153,7 @@ const InputPageBlockItem: React.FC<Props> = ({
                 onChange={handleChange}
                 rows={5}
                 tabIndex={0}
+                testId={`block-${idx}-${f.slug}`}
               />
             )}
             {f.type === 'text' && (
@@ -155,6 +163,7 @@ const InputPageBlockItem: React.FC<Props> = ({
                   autoFocus={false}
                   value={localData[f.slug]}
                   onChange={handleChange}
+                  testId={`block-${idx}-${f.slug}`}
                 />
               </div>
             )}
@@ -164,6 +173,7 @@ const InputPageBlockItem: React.FC<Props> = ({
                 value={localData[f.slug]}
                 onChange={handleChange}
                 options={f?.options || []}
+                testId={`block-${idx}-${f.slug}`}
               />
             )}
             {f.type === 'image' && (

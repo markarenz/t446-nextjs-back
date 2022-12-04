@@ -15,13 +15,18 @@ const Header = () => {
     });
   };
   return (
-    <header className={styles.header}>
+    <header className={styles.header} data-testid="header">
       <div>
         <ButtonNavToggle />
       </div>
       <div>
         <span className={styles.userRole}>{userRole}</span>
-        <Button disabled={false} onClick={handleLogout} tabIndex={-1}>
+        <Button
+          disabled={false}
+          onClick={handleLogout}
+          tabIndex={-1}
+          testId="btn-logout"
+        >
           <span>LOG OUT</span>
         </Button>
       </div>
