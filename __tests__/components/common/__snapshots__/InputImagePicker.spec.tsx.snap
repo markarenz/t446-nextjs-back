@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputImagePicker renders imagePicker with value 1`] = `
+<div
+  data-testid="input-image-picker"
+>
+  <div
+    class="item"
+    data-testid="input-image-picker-opener"
+    style="background-image: url(https://www.domain.com/thumbnails/test.jpg);"
+  />
+</div>
+`;

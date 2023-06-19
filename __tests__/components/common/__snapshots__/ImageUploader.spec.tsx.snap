@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageUploader renders component 1`] = `
+<div
+  class="uploader"
+  data-testid="image-uploader"
+>
+  <form
+    action=""
+    enctype="multipart/form-data"
+  >
+    <div
+      class="uploaderStage"
+    >
+      <input
+        accept="image/jpg, image/jpeg, image/png"
+        class="imgUploadInput"
+        data-testid="file-upload-input"
+        multiple=""
+        name="myImage"
+        type="file"
+      />
+      <div
+        class="messaging"
+      >
+        <h3>
+          Drop images here or click to select.
+        </h3>
+        <button
+          class="button  contained colorPrimary"
+          data-testid="btn-upload"
+          disabled=""
+          role="button"
+          type="button"
+        >
+          <span>
+            Upload
+          </span>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div
+    class="previews"
+  />
+</div>
+`;

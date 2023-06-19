@@ -8,10 +8,12 @@ describe('Loader', () => {
     const element = await screen.findByTestId('loader');
     expect(element).toHaveClass('active');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('renders not loading', async () => {
     render(<Loader show={false} />);
     const element = await screen.findByTestId('loader');
     expect(element).toHaveClass('false');
+    expect(element).toMatchSnapshot();
   });
 });

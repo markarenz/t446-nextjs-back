@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkButton renders link button 1`] = `
+<div
+  class="button  contained colorPrimary"
+  data-testid="link-button-inner"
+  href="/test"
+>
+  <span>
+    Test
+  </span>
+</div>
+`;

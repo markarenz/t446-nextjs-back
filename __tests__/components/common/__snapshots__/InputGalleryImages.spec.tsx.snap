@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders default button 1`] = `
+<div
+  class="root"
+  data-testid="input-gallery-images"
+>
+  <div
+    class="controlWrap"
+  >
+    <button
+      class="iconButton secondary"
+      data-testid="btn-add"
+      title="Add Images"
+      type="button"
+    >
+      <div
+        class="inner"
+      >
+        <svg
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M100 15a85 85 0 1085 85 84.93 84.93 0 00-85-85zm0 150a65 65 0 1165-65 64.87 64.87 0 01-65 65zm30-72.5h-20v-20a10 10 0 00-20 0v20H70a10 10 0 000 20h20v20a10 10 0 0020 0v-20h20a10 10 0 000-20z"
+          />
+        </svg>
+      </div>
+    </button>
+  </div>
+  <div
+    class="root"
+    data-testid="grid-wrap"
+  >
+    <div
+      class="sortableItemWrap"
+      data-testid="sortable-item-test1.jpg"
+    >
+      <div
+        aria-describedby="DndDescribedBy-0"
+        aria-disabled="false"
+        aria-roledescription="sortable"
+        class="root "
+        data-testid="sortable-0"
+        role="button"
+        style="background-image: url(https://www.domain.com/thumbnails/test1.jpg);"
+        tabindex="0"
+      >
+        <div
+          class="idLabel"
+        >
+          test1.jpg
+        </div>
+      </div>
+      <div
+        class="btnRemoveWrap"
+      >
+        <button
+          class="iconButton primary"
+          data-testid="btn-remove-gallery-img-0"
+          title="Remove"
+          type="button"
+        >
+          <div
+            class="inner"
+          >
+            <svg
+              version="1.1"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M13.182 5L5 13.182 41.818 50 5 86.818 13.182 95 50 58.18 86.818 95 95 86.818 58.18 50 95 13.182 86.818 5 50 41.818z"
+                  fill="navy"
+                  paint-order="markers fill stroke"
+                  stroke="#fff"
+                  stroke-linecap="round"
+                  stroke-width="0"
+                />
+              </g>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+    <div
+      class="sortableItemWrap"
+      data-testid="sortable-item-test2.jpg"
+    >
+      <div
+        aria-describedby="DndDescribedBy-0"
+        aria-disabled="false"
+        aria-roledescription="sortable"
+        class="root "
+        data-testid="sortable-1"
+        role="button"
+        style="background-image: url(https://www.domain.com/thumbnails/test2.jpg);"
+        tabindex="0"
+      >
+        <div
+          class="idLabel"
+        >
+          test2.jpg
+        </div>
+      </div>
+      <div
+        class="btnRemoveWrap"
+      >
+        <button
+          class="iconButton primary"
+          data-testid="btn-remove-gallery-img-1"
+          title="Remove"
+          type="button"
+        >
+          <div
+            class="inner"
+          >
+            <svg
+              version="1.1"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M13.182 5L5 13.182 41.818 50 5 86.818 13.182 95 50 58.18 86.818 95 95 86.818 58.18 50 95 13.182 86.818 5 50 41.818z"
+                  fill="navy"
+                  paint-order="markers fill stroke"
+                  stroke="#fff"
+                  stroke-linecap="round"
+                  stroke-width="0"
+                />
+              </g>
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    id="DndDescribedBy-0"
+    style="display: none;"
+  >
+    
+    To pick up a draggable item, press the space bar.
+    While dragging, use the arrow keys to move the item.
+    Press space again to drop the item in its new position, or press escape to cancel.
+  
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    id="DndLiveRegion-0"
+    role="status"
+    style="position: fixed; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
+  />
+</div>
+`;

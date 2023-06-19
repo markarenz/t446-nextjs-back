@@ -52,6 +52,7 @@ describe('InputPageBlockItem', () => {
     render(<InputPageBlockItem {...defaultProps} />);
     const element = await screen.findByTestId('input-page-block-item-1');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('toggles info', async () => {
     render(<InputPageBlockItem {...defaultProps} />);

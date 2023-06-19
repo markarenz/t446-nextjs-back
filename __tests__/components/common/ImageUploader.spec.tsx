@@ -43,6 +43,7 @@ describe('ImageUploader', () => {
     render(<ImageUploader {...defaultProps} />);
     const element = await screen.findByTestId('image-uploader');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
 
   it('handles file input onchange & removal', async () => {

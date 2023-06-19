@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch renders Switch 1`] = `
+<div
+  class="switchRoot"
+  data-testid="test-switch"
+>
+  <span
+    class="optionLabel"
+  >
+    On
+  </span>
+  <button
+    aria-label="switch"
+    class="switchBtn"
+    data-testid="test-switch-button"
+    tabindex="1"
+    title="switch"
+    type="button"
+  >
+    <svg
+      class=""
+      viewBox="0 0 100 100"
+    >
+      <circle
+        class="circleOuter"
+        cx="50"
+        cy="50"
+        r="50"
+      />
+      <circle
+        class="circleInner"
+        cx="50"
+        cy="50"
+        r="40"
+      />
+    </svg>
+  </button>
+  <span
+    class="optionLabel"
+  >
+    Off
+  </span>
+</div>
+`;

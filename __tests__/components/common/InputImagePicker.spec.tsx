@@ -21,6 +21,7 @@ describe('InputImagePicker', () => {
     render(<InputImagePicker {...defaultProps} />);
     const element = await screen.findByTestId('input-image-picker');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('renders imagePicker without value', async () => {
     render(<InputImagePicker {...altProps} />);

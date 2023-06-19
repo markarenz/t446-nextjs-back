@@ -23,5 +23,6 @@ describe('ImageSelectorItem', () => {
     render(<ImageSelectorItem {...defaultProps} />);
     const element = await screen.findByTestId('test-item-1');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
 });

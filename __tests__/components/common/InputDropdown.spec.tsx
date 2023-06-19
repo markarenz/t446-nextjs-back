@@ -17,6 +17,7 @@ describe('InputDropdown', () => {
     render(<InputDropdown {...defaultProps} />);
     const element = await screen.findByTestId('test-dropdown');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
 
   it('handles value change', async () => {

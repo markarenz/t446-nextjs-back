@@ -21,6 +21,7 @@ describe('Button', () => {
     );
     const element = await screen.findByRole('button');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('renders button with secondary color and outlines', async () => {
     render(

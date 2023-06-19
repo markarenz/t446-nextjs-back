@@ -158,7 +158,7 @@ const InputGalleryImages: React.FC<Props> = ({
               <IconClose />
             </IconButton>
             <div className={styles.inner}>
-              <ImageUploader handleTriggerRefresh={handleTriggerRefresh} />
+              {/* <ImageUploader handleTriggerRefresh={handleTriggerRefresh} /> */}
               <ImageSelector
                 allowSelection={true}
                 assetList={assetList}

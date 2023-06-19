@@ -55,12 +55,15 @@ const ImageUploader: React.FC<Props> = ({ handleTriggerRefresh }) => {
         body
       });
       const data = await response.json();
+      console.log('ImageUploader.tsx: uploadToServer API data', data);
       setImages((prev) => {
         const allUploaded = prev.every(
           (i) => i.uploaded || i.filename === data.filename
         );
         if (allUploaded) {
-          handleTriggerRefresh();
+          console.log('All Uploaded Triggering more than once?');
+          // console.log('images', images);
+          // handleTriggerRefresh();
         }
         return prev.map((i) =>
           i.filename === data.filename ? { ...i, uploaded: true } : i
@@ -71,7 +74,13 @@ const ImageUploader: React.FC<Props> = ({ handleTriggerRefresh }) => {
   const isFormValid = images.some((i) => !i.uploading);
   return (
     <div className={styles.uploader} data-testid="image-uploader">
-      <form encType="multipart/form-data" action="">
+      <form
+        encType="multipart/form-data"
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <div className={styles.uploaderStage}>
           <input
             data-testid="file-upload-input"

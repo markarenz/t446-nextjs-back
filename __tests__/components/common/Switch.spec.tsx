@@ -27,6 +27,7 @@ describe('Switch', () => {
     render(<Switch {...defaultProps} />);
     const element = await screen.findByTestId('test-switch');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('renders nothing when fewer than 2 options are provded', async () => {
     render(<Switch {...altProps} />);

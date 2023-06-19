@@ -18,6 +18,7 @@ describe('Button', () => {
     render(<InputMarkdown {...defaultProps} />);
     const element = await screen.findByTestId('input-markdown');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('toggles preview display', async () => {
     render(<InputMarkdown {...defaultProps} />);

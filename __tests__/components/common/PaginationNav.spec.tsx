@@ -20,6 +20,7 @@ describe('PaginationNav', () => {
     render(<PaginationNav {...defaultProps} />);
     const element = screen.queryByTestId('pagination-nav');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('renders component- last page', async () => {
     render(<PaginationNav {...altProps} />);

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProtectedByRole renders warning when unauthorized 1`] = `
+<div
+  data-testid="unauthorized"
+>
+  <h2>
+    You are not authorized for this page.
+  </h2>
+</div>
+`;

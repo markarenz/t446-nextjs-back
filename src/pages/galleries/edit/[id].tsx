@@ -37,10 +37,11 @@ const GalleryEdit: NextPage<Props> = ({ gallery, baseImgUrl }) => {
   const [assetList, setAssetList] = useState<Asset[]>([]);
   const handleLoadFileList = async () => {
     const newAssetList = await callGetFileList(setLoading);
-    setAssetList(newAssetList);
+    setAssetList([...newAssetList]);
   };
-  const handleTriggerRefresh = () => {
+  const handleTriggerRefresh = (newAssetList: Asset[]) => {
     handleLoadFileList();
+    // setAssetList([...newAssetList]);
   };
   useEffect(() => {
     handleLoadFileList();

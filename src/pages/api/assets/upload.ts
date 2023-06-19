@@ -67,7 +67,7 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
       secretAccessKey: process.env.AWS__ACCESS_SECRET
     });
 
-    sharp(img.filepath)
+    await sharp(img.filepath)
       .resize(250, 250)
       .toBuffer()
       .then((resizedImg) => {
@@ -90,7 +90,7 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
         });
       });
 
-    sharp(img.filepath)
+    await sharp(img.filepath)
       .resize(resizeConfig) //{width: 1920, height: 1080}
       .toBuffer()
       .then((resizedImg) => {
@@ -109,9 +109,9 @@ async function endpoint(req: NextApiRequest, res: NextApiResponse) {
             'Image uploaded successfully.',
             `${process.env.AWS__BASE_DIR}files/${filename}`
           );
-          return res.status(200).json({ filename });
         });
       });
+    return res.status(200).json({ filename });
   } catch (err) {
     console.error('UPLOAD ERROR', err);
     return res.status(500);

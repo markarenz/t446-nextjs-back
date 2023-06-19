@@ -28,6 +28,7 @@ describe('Input', () => {
     render(<Input {...defaultProps} />);
     const element = await screen.findByTestId('test-input');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('handles onChange', async () => {
     render(<Input {...defaultProps} />);

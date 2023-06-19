@@ -11,5 +11,6 @@ describe('EditItemHeader', () => {
     render(<EditItemHeader {...defaultProps} />);
     const element = await screen.findByText('Test Title');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
 });

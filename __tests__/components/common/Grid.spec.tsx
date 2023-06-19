@@ -17,5 +17,6 @@ describe('Grid', () => {
     );
     const element = await screen.findByTestId('grid-wrap');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
 });

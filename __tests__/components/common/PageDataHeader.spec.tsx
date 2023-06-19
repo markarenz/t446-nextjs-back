@@ -14,7 +14,9 @@ describe('PageDataHeader', () => {
     render(<PageDataHeader {...defaultProps} />);
     const element = await screen.findByTestId('page-data-header');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
+
   it('handles search change', async () => {
     render(<PageDataHeader {...defaultProps} />);
     const input = await screen.findByTestId('page-header-search-input');

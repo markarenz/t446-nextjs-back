@@ -20,6 +20,7 @@ describe('LinkButton', () => {
     );
     const element = await screen.findByTestId('link-button-inner');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('renders link button', async () => {
     render(

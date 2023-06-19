@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders component 1`] = `
+<input
+  class="input"
+  data-testid="test-input"
+  maxlength="100"
+  name="test"
+  tabindex="1"
+  type="text"
+  value="foo"
+/>
+`;
