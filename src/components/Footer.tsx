@@ -3,7 +3,7 @@ import styles from '../styles/modules/Footer.module.scss';
 const Footer = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} data-testid="footer">
       <div className="container-lg">
         <div className="text-center">
           Troop 446 Indianapolis, IN - Visit{' '}

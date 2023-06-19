@@ -14,6 +14,7 @@ export const callGetFileList = async (setLoading: Function) => {
     method: 'POST'
   });
   const data = await response.json();
+  console.log('callGetFileList', data.length);
   setLoading(false);
   return data;
 };

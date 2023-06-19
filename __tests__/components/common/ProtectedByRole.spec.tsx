@@ -31,6 +31,7 @@ describe('ProtectedByRole', () => {
     );
     const element = screen.queryByTestId('unauthorized');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
   it('renders warning when session is null', async () => {
     render(

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders default button 1`] = `
+<button
+  class="button  contained colorPrimary"
+  role="button"
+  type="button"
+>
+  <span>
+    Test
+  </span>
+</button>
+`;

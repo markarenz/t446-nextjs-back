@@ -28,6 +28,7 @@ const LinkButton: React.FC<Props> = ({
     <Link href={href} passHref>
       <div
         className={`${styles.button} ${classSize} ${classVariant} ${classColor}`}
+        data-testid="link-button-inner"
       >
         {children}
       </div>

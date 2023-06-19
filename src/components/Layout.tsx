@@ -35,7 +35,7 @@ const Layout: React.FC<Props> = ({ children, pageMeta }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Router]);
   return (
-    <div className={styles.layout}>
+    <div className={styles.layout} data-testid="layout">
       <PageSeo pageMeta={pageMeta} />
       {!isLoading && !isLoggedIn && (
         <div className={styles.loggedOut}>
@@ -44,6 +44,7 @@ const Layout: React.FC<Props> = ({ children, pageMeta }) => {
             disabled={false}
             onClick={() => signIn()}
             color="primary"
+            testId="btn-signin"
             variant="contained"
           >
             <span>Sign In</span>

@@ -40,6 +40,7 @@ describe('ImageSelector', () => {
     const element = await screen.findByTestId('image-selector');
     const assetListStage = await screen.findByTestId('asset-list-stage');
     const items = assetListStage.childNodes;
+    expect(element).toMatchSnapshot();
     expect(items.length).toBe(10);
   });
 

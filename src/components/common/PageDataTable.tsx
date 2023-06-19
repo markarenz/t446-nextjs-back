@@ -27,7 +27,7 @@ const PageDataTable: React.FC<Props> = ({
     router.replace(`/${slug}/edit/${id}`);
   };
   return (
-    <table className="mb-2">
+    <table className="mb-2" data-testid="page-data-table">
       <thead>
         <tr>
           {tableFields.map((f) => (
@@ -64,6 +64,7 @@ const PageDataTable: React.FC<Props> = ({
               {tableActions.includes('edit') && (
                 <span className="mr-1">
                   <IconButton
+                    testId={`page-table-item-${i.id}`}
                     onClick={() => handleNavigateToEdit(`${i.id}`)}
                     title="edit"
                     color="secondary"
@@ -80,7 +81,11 @@ const PageDataTable: React.FC<Props> = ({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <IconButton onClick={() => {}} title="view">
+                    <IconButton
+                      testId={`page-table-view-item-${i.id}`}
+                      onClick={() => {}}
+                      title="view"
+                    >
                       <IconView />
                     </IconButton>
                   </a>
@@ -89,6 +94,7 @@ const PageDataTable: React.FC<Props> = ({
               {tableActions.includes('delete') && (
                 <span>
                   <IconButton
+                    testId={`page-table-delete-item-${i.id}`}
                     onClick={() => handleDelete(i)}
                     title="delete"
                     color="primary"

@@ -66,7 +66,6 @@ ${xmlSuffix}`;
         accessKeyId: process.env.AWS__ACCESS_KEY,
         secretAccessKey: process.env.AWS__ACCESS_SECRET
       });
-
       const sitemapFilename = 'sitemap-t446.xml';
       fs.writeFile(sitemapFilename, str, function (err) {
         if (err) {

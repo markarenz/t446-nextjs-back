@@ -13,10 +13,14 @@ const customJestConfig = {
     '^@/pages/(.*)$': '<rootDir>/pages/$1'
   },
   testPathIgnorePatterns: ['<rootDir>/__tests__/fixtures/'],
-  // collectCoverageFrom: [
-  // 	'**/src/**/**/*.{js,jsx,ts,tsx}',
-  // 	'!**/__tests__/**',
-  // ],
+  // collectCoverage: true,
+  // collectCoverageFrom: ['**/src/**/*.{ts,tsx}', '!**/__tests__/**'],
+  // collectCoverageFrom: ['**/src/**', '!**/__tests__/**'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/constants.ts',
+    '!src/pageBlockDefs.ts'
+  ],
   testEnvironment: 'jest-environment-jsdom'
 };
 

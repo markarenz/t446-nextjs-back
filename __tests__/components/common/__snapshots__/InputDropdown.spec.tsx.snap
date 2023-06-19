@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputDropdown renders default dropdown 1`] = `
+<select
+  class="inputDropdown"
+  data-testid="test-dropdown"
+  name="fieldName"
+>
+  <option
+    value="val1"
+  >
+    option 1
+  </option>
+  <option
+    value="val2"
+  >
+    option 2
+  </option>
+</select>
+`;

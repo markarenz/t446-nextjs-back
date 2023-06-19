@@ -86,20 +86,19 @@ const InputGalleryImages: React.FC<Props> = ({
     setIsAddingImages(false);
   };
   const handleRemoveImg = (filename: string) => {
-    console.log('handleRemoveImg', filename);
     setItems((prevItems) => prevItems.filter((i: string) => i !== filename));
   };
   const handleAddItem = (filename: string) => {
-    console.log('handleAddImage', filename);
     if (!items.includes(filename)) {
       setItems((prevItems) => [filename, ...items]);
     }
   };
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-testid="input-gallery-images">
       <div className={styles.controlWrap}>
         <IconButton
+          testId="btn-add"
           title="Add Images"
           onClick={handleOpenModal}
           color="secondary"
@@ -117,11 +116,20 @@ const InputGalleryImages: React.FC<Props> = ({
       >
         <SortableContext items={items} strategy={rectSortingStrategy}>
           <Grid columns={5}>
-            {items.map((id) => (
-              <div className={styles.sortableItemWrap} key={id}>
-                <SortableItem id={id} baseImgUrl={baseImgUrl} />
+            {items.map((id, idx) => (
+              <div
+                className={styles.sortableItemWrap}
+                key={id}
+                data-testid={`sortable-item-${id}`}
+              >
+                <SortableItem
+                  id={id}
+                  baseImgUrl={baseImgUrl}
+                  data-testid={`sortable-${idx}`}
+                />
                 <div className={styles.btnRemoveWrap}>
                   <IconButton
+                    testId={`btn-remove-gallery-img-${idx}`}
                     title="Remove"
                     color="primary"
                     onClick={() => handleRemoveImg(id)}
@@ -142,11 +150,15 @@ const InputGalleryImages: React.FC<Props> = ({
       {isAddingImages && (
         <div className={styles.modalWrap}>
           <div className={styles.addImages}>
-            <IconButton title="close" onClick={handleCloseModal}>
+            <IconButton
+              testId="btn-add-close"
+              title="close"
+              onClick={handleCloseModal}
+            >
               <IconClose />
             </IconButton>
             <div className={styles.inner}>
-              <ImageUploader handleTriggerRefresh={handleTriggerRefresh} />
+              {/* <ImageUploader handleTriggerRefresh={handleTriggerRefresh} /> */}
               <ImageSelector
                 allowSelection={true}
                 assetList={assetList}

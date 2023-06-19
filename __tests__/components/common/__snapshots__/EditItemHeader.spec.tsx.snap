@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditItemHeader renders header 1`] = `
+<h2
+  class="pageTitle"
+>
+  Test Title
+</h2>
+`;

@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputPageBlockItem - block defs handles malformed pageBlock 1`] = `
+<div
+  class="root"
+  data-testid="input-page-block-item-1"
+>
+  <h3
+    class="title"
+  >
+    <div>
+      <span
+        class="mr-1"
+      >
+        <button
+          class="iconButton secondary"
+          data-testid="block-btn-info"
+          title="More detail"
+          type="button"
+        >
+          <div
+            class="inner"
+          >
+            <svg
+              version="1.1"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M36.228 79.507q0-1.292.62-4.082.362-1.602 1.086-4.238l6.356-23.77q.103-.414.155-.828.103-.413.103-.775 0-2.119-1.343-2.635-1.344-.517-4.91-.672v-2.79q2.998-.207 8.682-.827 5.736-.672 8.113-1.137l4.548-.879-8.217 30.127q-1.033 3.876-1.395 5.375-.93 3.824-.93 4.96 0 1.138.516 1.5.517.31 1.137.31 1.602 0 3.98-2.74 2.376-2.738 4.185-5.735l2.326 1.498q-5.168 7.597-7.907 10.232-4.496 4.34-9.612 4.34-2.894 0-5.219-1.756-2.274-1.809-2.274-5.478zm20.464-66.249q2.946 0 5.013 2.067 2.067 2.067 2.067 5.013 0 2.945-2.067 5.064-2.067 2.067-5.013 2.067-2.945 0-5.064-2.067-2.067-2.119-2.067-5.064 0-2.946 2.067-5.013 2.119-2.067 5.064-2.067z"
+                font-family="Times"
+                font-style="italic"
+                font-weight="bold"
+              />
+            </svg>
+          </div>
+        </button>
+      </span>
+      <span
+        class="mr-1"
+      >
+        <button
+          class="iconButton default"
+          data-testid="block-btn-move-up"
+          title="Move Up"
+          type="button"
+        >
+          <div
+            class="inner"
+          >
+            <svg
+              version="1.1"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M87.5 77.5L95 70 50 25 5 70l7.5 7.5L50 40z"
+                  paint-order="markers fill stroke"
+                  stroke-linecap="round"
+                  stroke-width="0"
+                />
+              </g>
+            </svg>
+          </div>
+        </button>
+      </span>
+      <span
+        class="mr-1"
+      >
+        <button
+          class="iconButton default"
+          data-testid="block-btn-move-down"
+          title="Move Down"
+          type="button"
+        >
+          <div
+            class="inner"
+          >
+            <svg
+              version="1.1"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <path
+                  d="M87.5 25l7.5 7.5-45 45-45-45 7.5-7.5L50 62.5z"
+                  paint-order="markers fill stroke"
+                  stroke-linecap="round"
+                  stroke-width="0"
+                />
+              </g>
+            </svg>
+          </div>
+        </button>
+      </span>
+      <button
+        class="iconButton primary"
+        data-testid="block-btn-remove"
+        title="Remove"
+        type="button"
+      >
+        <div
+          class="inner"
+        >
+          <svg
+            version="1.1"
+            viewBox="0 0 100 100"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M13.182 5L5 13.182 41.818 50 5 86.818 13.182 95 50 58.18 86.818 95 95 86.818 58.18 50 95 13.182 86.818 5 50 41.818z"
+                fill="navy"
+                paint-order="markers fill stroke"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-width="0"
+              />
+            </g>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </h3>
+  <div
+    class="grid"
+  >
+    <div
+      class="col-12"
+    >
+      <label />
+      <div
+        class="root"
+        data-testid="block-0-html"
+      >
+        <div
+          class="modeToggleWrapper"
+        >
+          <button
+            class="iconButton default"
+            data-testid="input-markdown-toggle-preview"
+            title="toggle preview"
+            type="button"
+          >
+            <div
+              class="inner"
+            >
+              <svg
+                version="1.1"
+                viewBox="0 0 80.794 80.794"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M79.351 38.549c-.706-.903-17.529-22.119-38.953-22.119-21.426 0-38.249 21.216-38.955 22.119L0 40.396l1.443 1.847c.706.903 17.529 22.12 38.955 22.12 21.424 0 38.247-21.217 38.953-22.12l1.443-1.847-1.443-1.847zM40.398 58.364c-15.068 0-28.22-13.046-32.643-17.967 4.425-4.922 17.576-17.966 32.643-17.966 15.066 0 28.218 13.045 32.642 17.966-4.426 4.922-17.577 17.967-32.642 17.967z"
+                />
+                <path
+                  d="M40.397 23.983c-9.052 0-16.416 7.363-16.416 16.414 0 9.053 7.364 16.417 16.416 16.417s16.416-7.364 16.416-16.417c0-9.051-7.364-16.414-16.416-16.414zm0 26.83c-5.744 0-10.416-4.673-10.416-10.417 0-5.742 4.672-10.414 10.416-10.414 5.743 0 10.416 4.672 10.416 10.414 0 5.744-4.673 10.417-10.416 10.417z"
+                />
+              </svg>
+            </div>
+          </button>
+        </div>
+        <div
+          class="grid"
+        >
+          <div
+            class="col-12"
+          >
+            <textarea
+              class="textarea"
+              name="html"
+              rows="5"
+              tabindex="0"
+            >
+              test text
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-12"
+    >
+      <label>
+        Image
+      </label>
+      <div
+        data-testid="input-image-picker"
+      >
+        <div
+          class="item"
+          data-testid="input-image-picker-opener"
+          style="background-image: url(https://www.domain.dom/thumbnails/t446-caving-01.jpg);"
+        />
+      </div>
+    </div>
+    <div
+      class="col-6"
+    >
+      <label>
+        Text Alignment
+      </label>
+      <select
+        class="inputDropdown"
+        data-testid="block-2-align"
+        name="align"
+      >
+        <option
+          value="left"
+        >
+          Left
+        </option>
+        <option
+          value="center"
+        >
+          Center
+        </option>
+        <option
+          value="right"
+        >
+          Right
+        </option>
+      </select>
+    </div>
+    <div
+      class="col-6"
+    >
+      <label>
+        Text on Left or Right
+      </label>
+      <select
+        class="inputDropdown"
+        data-testid="block-3-tcol"
+        name="tcol"
+      />
+    </div>
+  </div>
+</div>
+`;

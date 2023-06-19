@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationNav renders component 1`] = `
+<div
+  class="root"
+  data-testid="pagination-nav"
+>
+  <span
+    class="navBtnWrapper"
+  />
+  <span
+    class="pageNumsWrapper"
+  >
+    1
+     - 
+    10
+  </span>
+  <span
+    class="navBtnWrapper"
+  >
+    <span
+      class="scaleHover"
+      href="/test/2"
+    >
+      ▶
+    </span>
+  </span>
+</div>
+`;

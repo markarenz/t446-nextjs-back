@@ -17,5 +17,6 @@ describe('ConfirmationModal', () => {
     );
     const element = await screen.findByText('Test');
     expect(element).toBeInTheDocument();
+    expect(element).toMatchSnapshot();
   });
 });
