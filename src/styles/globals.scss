@@ -1,4 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+// Direct load of Google fonts did not work in Vercel
+// @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url(fonts/RobotoSlab-Regular.woff2) format('woff2'),
+    url(fonts/RobotoSlab-Regular.woff) format('woff'),
+    url(fonts/RobotoSlab-Regular.eot) format('eot');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000 to U+007F;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url(fonts/RobotoSlab-Bold.woff2) format('woff2'),
+    url(fonts/RobotoSlab-Bold.woff) format('woff'),
+    url(fonts/RobotoSlab-Bold.eot) format('eot');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000 to U+007F;
+}
+
 @import 'includes';
 @import "react-datepicker/dist/react-datepicker.css";
 
